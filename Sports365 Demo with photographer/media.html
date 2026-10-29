@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sports365 Media Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  [hidden] { display: none !important; }
+  body { background: #2a2c31; }
+  .app { display: grid; grid-template-columns: 236px 1fr; min-height: 100vh; }
+  .side { background: #1c1e22; padding: 14px 12px calc(14px + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px)); display: flex; flex-direction: column; gap: 4px; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+  .side .brand { display: flex; align-items: center; gap: 8px; text-decoration: none; font: 800 20px/1 var(--font-display); text-transform: uppercase; margin: 0 0 6px 4px; }
+  .side .brand img { width: 40px; height: 40px; }
+  .side .brand b { color: var(--accent); }
+  .side .role { margin: 0 0 12px 4px; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .side nav { display: grid; gap: 2px; }
+  .side nav a { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 8px; text-decoration: none; font-size: 14px; color: #d4d6db; }
+  .side nav a:hover { background: #26292f; }
+  .side nav a.on { background: var(--accent-deep); color: #fff; font-weight: 600; }
+  .side nav svg { width: 16px; height: 16px; flex: none; }
+  .side .count { margin-left: auto; background: var(--accent); color: var(--accent-ink); font-size: 11px; font-weight: 700; border-radius: 999px; padding: 1px 7px; }
+  .side .lock { margin-left: auto; font-size: 10px; font-weight: 700; color: var(--muted); border: 1px solid #3a3d45; border-radius: 4px; padding: 1px 5px; }
+  .plan { margin-top: 18px; background: #2a2d33; border-radius: 10px; padding: 12px; font-size: 12px; display: grid; gap: 6px; }
+  .plan b { display: block; font-size: 13px; }
+  .plan a { color: var(--accent); font-weight: 600; }
+
+  .demo-bar { display: flex; flex-wrap: wrap; gap: 8px 14px; justify-content: center; align-items: center; }
+  .viewas { display: inline-flex; align-items: center; gap: 6px; }
+  .viewas button { font: 600 12px var(--font-body); color: var(--fg); background: #1b1d22; border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; min-height: 28px; cursor: pointer; }
+  .viewas button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+  .main { padding: 18px max(18px, env(safe-area-inset-right, 0px)) 40px 18px; display: grid; gap: 14px; align-content: start; min-width: 0; }
+  .welcome { background: var(--accent-deep); border-radius: 12px; padding: 18px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; }
+  .welcome small { font-size: 12px; }
+  .welcome h1 { font: 700 26px/1.2 var(--font-body); text-transform: none; letter-spacing: 0; }
+  .welcome .acts { display: flex; gap: 8px; flex-wrap: wrap; }
+  .welcome .badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .btn-white { background: #fff; color: #1b1d22; }
+  .btn-maroon { background: #7c2d12; color: #fff; }
+  .plan-chip { font: 700 11px var(--font-body); background: #1b1d22; color: #fff; padding: 3px 8px; border-radius: 999px; }
+  .bg-chip { font: 700 11px var(--font-body); background: #14532d; color: #bbf7d0; padding: 3px 8px; border-radius: 999px; }
+
+  .panel { background: #34363c; border: 1px solid #40434a; border-radius: 12px; padding: 16px; min-width: 0; }
+  .panel-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .panel-head h2 { font: 700 16px var(--font-body); text-transform: none; letter-spacing: 0; display: flex; align-items: center; gap: 8px; }
+  .panel-head a, .panel-head button.link { color: var(--accent); font-size: 12px; background: none; border: 0; cursor: pointer; font-family: inherit; }
+  .tier { font: 700 10px var(--font-body); letter-spacing: .06em; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; }
+  .tier.pro { background: #3a1d0d; color: #fdba74; }
+  .tier.elite { background: #1e1b4b; color: #c4b5fd; }
+  .sub { font-size: 12px; color: var(--muted); }
+
+  .setup-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 13px; }
+  .setup-top b { font-size: 15px; }
+  .bar { height: 6px; background: #4a4d55; border-radius: 9px; margin: 10px 0 12px; overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--accent); border-radius: 9px; transition: width .3s ease; }
+  .tasks { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .task { display: flex; align-items: center; gap: 8px; padding: 9px 10px; border: 1px solid #4a4d55; border-radius: 8px; background: #2c2e33; font-size: 13px; cursor: pointer; color: var(--fg); font-family: inherit; text-align: left; }
+  .task .dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #8b8f99; flex: none; display: grid; place-items: center; font-size: 10px; }
+  .task.done { color: #8b8f99; text-decoration: line-through; }
+  .task.done .dot { background: var(--good); border-color: var(--good); color: #fff; }
+  .task.next { border-color: var(--accent); }
+
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .kpi small { font-size: 13px; color: #c9ccd2; }
+  .kpi b { display: block; font: 800 40px/1.1 var(--font-display); margin: 4px 0 2px; font-variant-numeric: tabular-nums; }
+  .kpi .note { font-size: 12px; color: var(--muted); }
+  .kpi .up { color: #86efac; }
+  .kpi.locked b { color: #6b6f78; }
+  .kpi.locked .note a { color: var(--accent); font-weight: 600; }
+
+  .grid2 { display: grid; grid-template-columns: 1.45fr 1fr; gap: 14px; align-items: start; }
+  .col { display: grid; gap: 14px; min-width: 0; }
+  .sess { display: grid; grid-template-columns: 96px 4px 1fr auto; gap: 12px; align-items: center; background: #2c2e33; border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
+  .sess .time b { display: block; font-size: 14px; white-space: nowrap; }
+  .sess .time span, .sess .what span { font-size: 11px; color: var(--muted); }
+  .sess .rail { height: 32px; border-radius: 4px; }
+  .sess .what { min-width: 0; } .sess .what b { display: block; font-size: 14px; }
+
+  /* Galleries */
+  .gal { background: #2c2e33; border-radius: 10px; padding: 12px; display: grid; grid-template-columns: 132px 1fr; gap: 14px; margin-bottom: 10px; }
+  .thumbs { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; border-radius: 8px; overflow: hidden; align-self: start; }
+  .thumbs i { aspect-ratio: 1; display: block; max-width: 100%; }
+  .gal-body { min-width: 0; display: grid; gap: 6px; align-content: start; }
+  .gal-body b { font-size: 14px; }
+  .gal-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+  .gal-meta span { font-size: 11px; font-weight: 600; background: #1f2125; border-radius: 999px; padding: 3px 8px; color: #d4d6db; }
+  .gal-meta span.priv { background: #14532d; color: #bbf7d0; }
+  .gal-meta span.opt { background: #451a03; color: #fed7aa; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+  .tags span { font-size: 11px; background: #3a3d45; border-radius: 6px; padding: 3px 7px; }
+  .tags span b { color: var(--accent); font-size: 11px; }
+  .gal-acts { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+
+  .locked-box { background: #26282d; border: 1px dashed #4a4d55; border-radius: 10px; padding: 16px; display: grid; gap: 10px; }
+  .locked-box p { font-size: 13px; color: #b4b7bf; }
+  .locked-box ul { margin: 0; padding-left: 18px; font-size: 13px; color: #b4b7bf; display: grid; gap: 4px; }
+  .btn-up { background: transparent; color: var(--accent); border: 1px solid var(--accent); justify-self: start; }
+
+  /* Store */
+  .store { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .pkg { background: #2c2e33; border-radius: 8px; padding: 12px; display: grid; gap: 4px; align-content: start; }
+  .pkg b { font-size: 13px; }
+  .pkg .p { font: 800 26px/1 var(--font-display); color: var(--accent); }
+  .pkg span { font-size: 12px; color: var(--muted); }
+  .sales { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 13px; color: #c9ccd2; }
+  .sales b { color: var(--fg); font-variant-numeric: tabular-nums; }
+
+  /* Right column */
+  .use { display: grid; gap: 12px; }
+  .use-row .top { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; }
+  .use-row .top span { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .use-row .bar { margin: 6px 0 0; }
+  .use-row.hot .bar i { background: #f59e0b; }
+  .use-row.none .top span { color: #8b8f99; }
+  .upsell { margin-top: 14px; background: #2c2e33; border: 1px dashed #5a5d66; border-radius: 8px; padding: 10px 12px; font-size: 12px; color: #c9ccd2; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .upsell a { color: var(--accent); font-weight: 600; white-space: nowrap; }
+
+  .job { background: #2c2e33; border-radius: 8px; padding: 12px; margin-bottom: 8px; display: grid; gap: 4px; }
+  .job .top { display: flex; justify-content: space-between; gap: 8px; }
+  .job .top b { font-size: 14px; }
+  .job .top .pay { color: #86efac; font-weight: 700; font-size: 14px; white-space: nowrap; }
+  .job span.sub { display: block; }
+  .job .row { display: flex; gap: 8px; margin-top: 8px; }
+  .job .status { margin-top: 8px; font-size: 13px; font-weight: 600; color: #86efac; }
+
+  .slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .slot { background: #2c2e33; border-radius: 6px; padding: 8px 6px; text-align: center; font-size: 11px; display: grid; gap: 2px; }
+  .slot b { font-size: 13px; }
+  .slot.bk { background: var(--accent-deep); color: #fff; }
+  .slot.open { border: 1px dashed #5a5d66; color: var(--muted); }
+
+  .link-box { border-color: var(--accent); }
+  .link-box p { font-size: 13px; color: #c9ccd2; }
+  .copy { display: flex; align-items: center; gap: 8px; background: #1f2125; border-radius: 8px; padding: 8px 8px 8px 12px; margin: 12px 0 10px; }
+  .copy code { font: 13px var(--font-body); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .link-box a { color: var(--accent); font-size: 13px; }
+
+  @media (max-width: 1100px) { .tasks { grid-template-columns: repeat(3, 1fr); } .grid2 { grid-template-columns: 1fr; } }
+  @media (max-width: 860px) {
+    .app { grid-template-columns: 1fr; }
+    .side { position: static; height: auto; padding: 10px max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px)); }
+    .side nav { display: flex; overflow-x: auto; gap: 4px; padding-bottom: 4px; }
+    .side nav a { white-space: nowrap; }
+    .plan, .side .role { display: none; }
+    .main { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+    .kpis { grid-template-columns: repeat(2, 1fr); }
+    .store { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    .tasks { grid-template-columns: 1fr; }
+    .gal { grid-template-columns: 1fr; }
+    .thumbs { grid-template-columns: repeat(4, 1fr); }
+    .sess { grid-template-columns: 74px 4px 1fr; gap: 10px; }
+    .sess .pill { grid-column: 3; justify-self: start; }
+  }
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <span>Practice demo · <a href="./">Home page</a> · <a href="dashboard.html">Coach dashboard</a> · <a href="book.html">Public booking page</a></span>
+  <span class="viewas" role="group" aria-label="View the dashboard as a photographer on">Viewing as:
+    <button type="button" data-plan="basic" aria-pressed="false">Media Basic</button>
+    <button type="button" data-plan="pro" aria-pressed="true">Media Pro</button>
+    <button type="button" data-plan="elite" aria-pressed="false">Media Elite</button>
+  </span>
+</div>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="./"><img src="assets/logo.png" alt=""><span>Sports<b>365</b></span></a>
+    <p class="role">Media account</p>
+    <nav aria-label="Dashboard">
+      <a class="on" href="media.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</a>
+      <a href="#" data-soon><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Profile &amp; Portfolio</a>
+      <a href="#" data-soon><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Calendar</a>
+      <a href="#shoots"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12l3 3 5-6"/></svg>Bookings<span class="count">3</span></a>
+      <a href="#jobs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="4"/></svg>Photographer Requests<span class="count" id="job-count">3</span></a>
+      <a href="#galleries"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>Team Galleries<span class="lock" data-lock="pro">PRO</span></a>
+      <a href="#mediaday"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5M17 11a3 3 0 0 0 0-6M21 20c0-2-1.5-4-4-4.5"/></svg>Media Day<span class="lock" data-lock="pro">PRO</span></a>
+      <a href="#" data-soon><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 10l5-3v10l-5-3"/></svg>Highlight Reels</a>
+      <a href="#store"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l1-5h16l1 5M3 9h18v11H3zM9 13h6"/></svg>Photo Store<span class="lock" data-lock="elite">ELITE</span></a>
+      <a href="#store"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Reports<span class="lock" data-lock="elite">ELITE</span></a>
+      <a href="#" data-soon><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Background Check</a>
+      <a href="./#media"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Subscriptions</a>
+    </nav>
+    <div class="plan"><b id="plan-name">365 Media Pro</b><span class="muted" id="plan-renew">Yearly · $119.99 · renews Oct 29, 2027</span><a href="./#media">Compare plans →</a></div>
+  </aside>
+
+  <main class="main">
+    <section class="welcome">
+      <div>
+        <small>Thursday, October 29</small>
+        <h1>Welcome back, Maya</h1>
+        <div class="badges"><span class="plan-chip" id="plan-chip">365 Media Pro</span><span class="bg-chip">✓ Background check verified</span></div>
+      </div>
+      <div class="acts">
+        <button class="btn btn-white btn-sm" type="button" id="share-top">🔗 Share booking link</button>
+        <button class="btn btn-maroon btn-sm" type="button" id="upload-top">+ Upload gallery</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="setup-top"><b id="setup-title">Get set up: 3 of 5 done</b><span class="muted">Media pros with a full portfolio get booked faster</span></div>
+      <div class="bar"><i id="setup-bar" style="width:60%"></i></div>
+      <div class="tasks" id="tasks">
+        <button class="task done" type="button"><span class="dot">✓</span>Pass your background check</button>
+        <button class="task done" type="button"><span class="dot">✓</span>Complete your profile</button>
+        <button class="task done" type="button"><span class="dot">✓</span>Upload your portfolio</button>
+        <button class="task next" type="button"><span class="dot"></span>Apply to your first request</button>
+        <button class="task" type="button"><span class="dot"></span>Share your booking link</button>
+      </div>
+    </section>
+
+    <section class="kpis">
+      <div class="panel kpi"><small>Shoots this month</small><b>9</b><span class="note up">3 more than September</span></div>
+      <div class="panel kpi"><small>Booked this month</small><b>$1,260</b><span class="note">7 games · 1 clinic · 1 media day</span></div>
+      <div class="panel kpi" data-kpi="pro"><small>Gallery views</small><b data-on="1,482" data-off="—">1,482</b><span class="note" data-on="From 38 team families" data-off="Team galleries start on &lt;a href=&quot;./#media&quot;&gt;Media Pro&lt;/a&gt;">From 38 team families</span></div>
+      <div class="panel kpi" data-kpi="elite"><small>Photo sales</small><b data-on="$386" data-off="—">$386</b><span class="note" data-on="31 orders · 0% commission" data-off="Sell photos on &lt;a href=&quot;./#media&quot;&gt;Media Elite&lt;/a&gt;">31 orders · 0% commission</span></div>
+    </section>
+
+    <div class="grid2">
+      <div class="col">
+        <section class="panel" id="shoots">
+          <div class="panel-head"><h2>Upcoming shoots</h2><a href="#" data-soon>Open calendar</a></div>
+          <div class="sess"><div class="time"><b>Fri 7:00 PM</b><span>Game</span></div><i class="rail" style="background:var(--accent)"></i><div class="what"><b>Eastside Elite 15U vs. Northgate</b><span>Booked by Coach Jordan · photos · $150</span></div><span class="pill pill-good">Confirmed</span></div>
+          <div class="sess"><div class="time"><b>Sat 9:00 AM</b><span>Clinic</span></div><i class="rail" style="background:var(--violet)"></i><div class="what"><b>Fall Shooting Clinic</b><span>Photos + 60-second highlight reel · $200</span></div><span class="pill pill-good">Confirmed</span></div>
+          <div class="sess"><div class="time"><b>Sun 10:00 AM</b><span>Media day</span></div><i class="rail" style="background:var(--blue)"></i><div class="what"><b>Westfield Youth Soccer media day</b><span>6 teams · team and individual photos</span></div><span class="pill pill-warn">6 slots open</span></div>
+        </section>
+
+        <section class="panel" id="galleries">
+          <div class="panel-head"><h2>Team galleries <span class="tier pro">Pro</span></h2><a href="#" data-soon class="pro-only">All galleries</a></div>
+          <div class="pro-on">
+            <div class="gal">
+              <div class="thumbs" aria-hidden="true"><i style="background:linear-gradient(135deg,#c2410c,#1b1d22)"></i><i style="background:linear-gradient(135deg,#3b82f6,#1b1d22)"></i><i style="background:linear-gradient(135deg,#78716c,#1b1d22)"></i><i style="background:linear-gradient(135deg,#f26b1d,#3a1d0d)"></i></div>
+              <div class="gal-body">
+                <b>Eastside Elite 15U vs. Northgate · Oct 23</b>
+                <div class="gal-meta"><span>312 photos</span><span>14 of 14 players tagged</span><span>11 of 14 families viewed</span><span class="priv">Private to team</span><span class="opt">1 athlete opted out</span></div>
+                <div class="tags"><span><b>#3</b> Marcus H. · 31</span><span><b>#11</b> Andre L. · 27</span><span><b>#24</b> Chris O. · 22</span><span>+ 11 more</span></div>
+                <div class="gal-acts"><button class="btn btn-ghost btn-sm" type="button" data-toast="Demo: the gallery would open here">Open gallery</button><button class="btn btn-ghost btn-sm" type="button" data-toast="Demo: reminder sent to the 3 families who haven't viewed it">Remind 3 families</button></div>
+              </div>
+            </div>
+            <div class="gal">
+              <div class="thumbs" aria-hidden="true"><i style="background:linear-gradient(135deg,#16a34a,#1b1d22)"></i><i style="background:linear-gradient(135deg,#8b5cf6,#1b1d22)"></i><i style="background:linear-gradient(135deg,#0ea5e9,#1b1d22)"></i><i style="background:linear-gradient(135deg,#16a34a,#14532d)"></i></div>
+              <div class="gal-body">
+                <b>Westfield U12 Girls Soccer · Media day</b>
+                <div class="gal-meta"><span>96 photos</span><span>18 of 18 players tagged</span><span>16 of 18 families viewed</span><span class="priv">Private to team</span></div>
+                <p class="sub">Delivered Oct 18 · watermarked previews · parents picked 42 favorites</p>
+              </div>
+            </div>
+            <p class="sub">Galleries attach to the game on the team's calendar, and families are notified when you publish.</p>
+          </div>
+          <div class="locked-box pro-off">
+            <p>Deliver galleries straight to every family on the roster, without sharing links by text.</p>
+            <ul><li>Galleries attach to the game on the team calendar</li><li>Tag players by jersey number from the roster</li><li>Watermarked previews and parent favorites</li></ul>
+            <a class="btn btn-up btn-sm" href="./#media">Upgrade to 365 Media Pro</a>
+          </div>
+        </section>
+
+        <section class="panel" id="store">
+          <div class="panel-head"><h2>Photo store <span class="tier elite">Elite</span></h2><a href="#" data-soon class="elite-only">Edit packages</a></div>
+          <div class="elite-on">
+            <div class="store">
+              <div class="pkg"><b>Single photo</b><span class="p">$5</span><span>Full-resolution download</span></div>
+              <div class="pkg"><b>Player package</b><span class="p">$25</span><span>Every photo of your athlete from one game</span></div>
+              <div class="pkg"><b>Team package</b><span class="p">$150</span><span>Full gallery for the coach or program</span></div>
+            </div>
+            <div class="sales"><span>October sales <b>$386</b></span><span>Orders <b>31</b></span><span>Best seller <b>Player package</b></span><span>Sports365 commission <b>$0</b></span></div>
+          </div>
+          <div class="locked-box elite-off">
+            <p>Sell downloads and packages to the families who are already viewing your galleries. Sports365 takes no commission.</p>
+            <ul><li>Single photos, player packages and team packages</li><li>Your logo on every gallery</li><li>Monthly sales reports</li></ul>
+            <a class="btn btn-up btn-sm" href="./#media">Upgrade to 365 Media Elite</a>
+          </div>
+        </section>
+      </div>
+
+      <div class="col">
+        <section class="panel">
+          <div class="panel-head"><h2>Your plan</h2><a href="./#media">Compare plans</a></div>
+          <div class="use" id="usage"></div>
+          <div class="upsell" id="upsell"></div>
+        </section>
+
+        <section class="panel" id="jobs">
+          <div class="panel-head"><h2>Photographer wanted</h2><span class="sub">Near you · from coaches on Sports365</span></div>
+          <div class="job"><div class="top"><b>Eastside Elite 13U vs. Riverside</b><span class="pay">$120</span></div><span class="sub">Sat, Oct 31 · 11:00 AM · Main Street Rec Center · 2.1 mi</span><span class="sub">Coach Taylor · photos only</span><div class="row"><button class="btn btn-primary btn-sm" type="button" data-apply>Apply</button><button class="btn btn-mute btn-sm" type="button" data-toast="Demo: request details would open here">Details</button></div></div>
+          <div class="job"><div class="top"><b>Fall Showcase · Grades 9–12</b><span class="pay">$300</span></div><span class="sub">Sat, Nov 7 · 9:00 AM – 2:00 PM · East gym · 4.8 mi</span><span class="sub">Photos + highlight reels for 40 athletes</span><div class="row"><button class="btn btn-primary btn-sm" type="button" data-apply>Apply</button><button class="btn btn-mute btn-sm" type="button" data-toast="Demo: request details would open here">Details</button></div></div>
+          <div class="job"><div class="top"><b>Northside Volleyball senior night</b><span class="pay">$175</span></div><span class="sub">Thu, Nov 12 · 6:00 PM · Northside HS · 6.3 mi</span><span class="sub">Coach Rivera · photos + 1 group shot</span><div class="row"><button class="btn btn-primary btn-sm" type="button" data-apply>Apply</button><button class="btn btn-mute btn-sm" type="button" data-toast="Demo: request details would open here">Details</button></div></div>
+        </section>
+
+        <section class="panel" id="mediaday">
+          <div class="panel-head"><h2>Media day · Sun, Nov 1 <span class="tier pro">Pro</span></h2></div>
+          <div class="pro-on">
+            <p class="sub" style="margin-bottom:10px">Westfield Youth Soccer · 18 of 24 slots booked · $15 per player</p>
+            <div class="slots">
+              <div class="slot bk"><b>10:00</b>U8 Boys</div><div class="slot bk"><b>10:20</b>U8 Girls</div><div class="slot bk"><b>10:40</b>U10 Boys</div><div class="slot open"><b>11:00</b>Open</div>
+              <div class="slot bk"><b>11:20</b>U10 Girls</div><div class="slot bk"><b>11:40</b>U12 Boys</div><div class="slot open"><b>12:00</b>Open</div><div class="slot open"><b>12:20</b>Open</div>
+            </div>
+          </div>
+          <div class="locked-box pro-off">
+            <p>Let teams book media day time slots and pay per player, all in one link.</p>
+            <a class="btn btn-up btn-sm" href="./#media">Upgrade to 365 Media Pro</a>
+          </div>
+        </section>
+
+        <section class="panel link-box">
+          <div class="panel-head" style="margin-bottom:6px"><h2>Your booking link</h2></div>
+          <p>Coaches and parents can see your portfolio and book you for a game.</p>
+          <div class="copy"><code id="book-url">sports365app.com/media/maya-torres</code><button class="btn btn-primary btn-sm" type="button" id="copy-btn">Copy</button></div>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+<script>
+  const toast = document.getElementById('toast');
+  let tm;
+  function show(msg) { toast.textContent = msg; toast.hidden = false; clearTimeout(tm); tm = setTimeout(() => { toast.hidden = true; }, 2600); }
+  document.querySelectorAll('[data-soon]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); show('That page isn\'t built in this demo yet'); }));
+  document.querySelectorAll('[data-toast]').forEach(el => el.addEventListener('click', () => show(el.dataset.toast)));
+
+  const PLANS = {
+    basic: { name: '365 Media Basic', rank: 0, storage: 50, renew: 'Yearly · $79.99 · renews Oct 29, 2027' },
+    pro:   { name: '365 Media Pro',   rank: 1, storage: 250, renew: 'Yearly · $119.99 · renews Oct 29, 2027' },
+    elite: { name: '365 Media Elite', rank: 2, storage: 1000, renew: 'Yearly · $199.99 · renews Oct 29, 2027' }
+  };
+  const USED_GB = 38;
+  let plan = 'pro';
+  try { const s = localStorage.getItem('s365-media-plan'); if (PLANS[s]) plan = s; } catch (e) {}
+  const has = need => PLANS[plan].rank >= PLANS[need].rank;
+
+  function render() {
+    const p = PLANS[plan];
+    document.querySelectorAll('.viewas button').forEach(b => b.setAttribute('aria-pressed', b.dataset.plan === plan ? 'true' : 'false'));
+    document.getElementById('plan-name').textContent = p.name;
+    document.getElementById('plan-chip').textContent = p.name;
+    document.getElementById('plan-renew').textContent = p.renew;
+    document.querySelectorAll('[data-lock]').forEach(el => { el.hidden = has(el.dataset.lock); });
+    document.querySelectorAll('.pro-on, .pro-only').forEach(el => { el.hidden = !has('pro'); });
+    document.querySelectorAll('.pro-off').forEach(el => { el.hidden = has('pro'); });
+    document.querySelectorAll('.elite-on, .elite-only').forEach(el => { el.hidden = !has('elite'); });
+    document.querySelectorAll('.elite-off').forEach(el => { el.hidden = has('elite'); });
+    document.getElementById('upload-top').hidden = !has('pro');
+    document.querySelectorAll('[data-kpi]').forEach(k => {
+      const ok = has(k.dataset.kpi);
+      k.classList.toggle('locked', !ok);
+      const b = k.querySelector('b'), n = k.querySelector('.note');
+      b.textContent = ok ? b.dataset.on : b.dataset.off;
+      n.innerHTML = ok ? n.dataset.on : n.dataset.off;
+    });
+
+    const storageTxt = p.storage >= 1000 ? `${USED_GB} GB of 1 TB` : `${USED_GB} of ${p.storage} GB`;
+    const sp = Math.round(USED_GB / p.storage * 100);
+    const rows = [
+      `<div class="use-row${sp >= 70 ? ' hot' : ''}"><div class="top"><b>Storage</b><span>${storageTxt}</span></div><div class="bar"><i style="width:${Math.max(sp, 2)}%"></i></div></div>`,
+      has('pro')
+        ? `<div class="use-row"><div class="top"><b>Team galleries</b><span>6 this month · unlimited</span></div><div class="bar"><i style="width:100%;background:var(--good)"></i></div></div>`
+        : `<div class="use-row none"><div class="top"><b>Team galleries</b><span>Not included</span></div><div class="bar"><i style="width:0"></i></div></div>`,
+      `<div class="use-row"><div class="top"><b>Background check</b><span>Verified · renews Aug 12, 2027</span></div><div class="bar"><i style="width:100%;background:var(--good)"></i></div></div>`
+    ];
+    document.getElementById('usage').innerHTML = rows.join('') + '<p class="sub">No commission on bookings. Families pay you directly.</p>';
+    const up = document.getElementById('upsell');
+    if (plan === 'basic') up.innerHTML = '<span>Deliver galleries to team families and run media days with Media Pro for $14.99/mo.</span><a href="./#media">See Media Pro →</a>';
+    else if (plan === 'pro') up.innerHTML = '<span>Sell photos to the families already viewing your galleries with Media Elite.</span><a href="./#media">See Media Elite →</a>';
+    else up.innerHTML = '<span>You\'re on the top plan. Need more than 1 TB? Extra storage is coming soon.</span><a href="./#media">Plans →</a>';
+  }
+
+  document.querySelectorAll('.viewas button').forEach(b => b.addEventListener('click', () => {
+    plan = b.dataset.plan;
+    try { localStorage.setItem('s365-media-plan', plan); } catch (e) {}
+    render();
+    show(`Now viewing as a ${PLANS[plan].name} photographer`);
+  }));
+
+  let jobs = 3;
+  document.querySelectorAll('[data-apply]').forEach(b => b.addEventListener('click', () => {
+    b.closest('.row').outerHTML = '<div class="status">✓ Applied. The coach can see your portfolio and background check.</div>';
+    jobs -= 1;
+    const c = document.getElementById('job-count'); c.textContent = jobs; c.hidden = jobs === 0;
+    show('Demo: application sent');
+  }));
+  document.getElementById('upload-top').addEventListener('click', () => show('Demo: pick a team and game, then drop in your photos'));
+
+  const tasks = [...document.querySelectorAll('.task')];
+  function refreshSetup() {
+    const done = tasks.filter(t => t.classList.contains('done')).length;
+    document.getElementById('setup-title').textContent = done === 5 ? 'You\'re all set up!' : `Get set up: ${done} of 5 done`;
+    document.getElementById('setup-bar').style.width = (done / 5 * 100) + '%';
+    tasks.forEach(t => t.classList.remove('next'));
+    const next = tasks.find(t => !t.classList.contains('done'));
+    if (next) next.classList.add('next');
+  }
+  tasks.forEach(t => t.addEventListener('click', () => {
+    t.classList.toggle('done');
+    t.querySelector('.dot').textContent = t.classList.contains('done') ? '✓' : '';
+    refreshSetup();
+  }));
+
+  async function copyLink() {
+    const text = 'https://' + document.getElementById('book-url').textContent;
+    try { await navigator.clipboard.writeText(text); show('Booking link copied'); }
+    catch (e) { const r = document.createRange(); r.selectNodeContents(document.getElementById('book-url')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); show('Link selected. Press Ctrl+C to copy'); }
+  }
+  document.getElementById('copy-btn').addEventListener('click', copyLink);
+  document.getElementById('share-top').addEventListener('click', copyLink);
+
+  const h = location.hash.replace('#plan-', '');
+  if (PLANS[h]) plan = h;
+  render();
+</script>
+</body>
+</html>
