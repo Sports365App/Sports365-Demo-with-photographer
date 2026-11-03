@@ -17,57 +17,101 @@
   .side .brand img { width: 40px; height: 40px; }
   .side .brand b { color: var(--accent); }
   .side nav { display: grid; gap: 2px; }
-  .side nav a { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 8px; text-decoration: none; font-size: 14px; color: #d4d6db; }
+  .side nav .grp { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #6b6f78; margin: 10px 0 2px 10px; }
+  .side nav a { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 8px; text-decoration: none; font-size: 14px; color: #d4d6db; }
   .side nav a:hover { background: #26292f; }
   .side nav a.on { background: var(--accent-deep); color: #fff; font-weight: 600; }
   .side nav svg { width: 16px; height: 16px; flex: none; }
   .side .count { margin-left: auto; background: var(--accent); color: var(--accent-ink); font-size: 11px; font-weight: 700; border-radius: 999px; padding: 1px 7px; }
   .side .lock { margin-left: auto; font-size: 10px; font-weight: 700; color: var(--muted); border: 1px solid #3a3d45; border-radius: 4px; padding: 1px 5px; }
-  .plan { margin-top: 18px; background: #2a2d33; border-radius: 10px; padding: 12px; font-size: 12px; display: grid; gap: 6px; }
+  .side nav a.on .lock { color: #fff; border-color: rgba(255,255,255,.4); }
+  .plan { margin-top: 14px; background: #2a2d33; border-radius: 10px; padding: 12px; font-size: 12px; display: grid; gap: 6px; }
   .plan b { display: block; font-size: 13px; }
   .plan a { color: var(--accent); font-weight: 600; }
+  .logout { margin-top: 10px; background: #3a3d45; color: var(--fg); }
 
-  /* Plan switch in demo bar */
   .demo-bar { display: flex; flex-wrap: wrap; gap: 8px 14px; justify-content: center; align-items: center; }
   .viewas { display: inline-flex; align-items: center; gap: 6px; }
   .viewas button { font: 600 12px var(--font-body); color: var(--fg); background: #1b1d22; border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; min-height: 28px; cursor: pointer; }
   .viewas button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 
-  .main { padding: 18px max(18px, env(safe-area-inset-right, 0px)) 40px 18px; display: grid; gap: 14px; align-content: start; min-width: 0; }
+  .main { padding: 18px max(18px, env(safe-area-inset-right, 0px)) 40px 18px; min-width: 0; }
+  .view { display: grid; gap: 14px; align-content: start; min-width: 0; }
+  .vhead { background: var(--accent-deep); border-radius: 12px; padding: 14px 18px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+  .vhead h1 { font: 700 22px/1.2 var(--font-body); text-transform: none; letter-spacing: 0; display: flex; align-items: center; gap: 10px; }
+  .vhead p { font-size: 13px; color: #fde3d2; margin-top: 2px; }
+  .vhead .acts { display: flex; gap: 8px; flex-wrap: wrap; }
   .welcome { background: var(--accent-deep); border-radius: 12px; padding: 18px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; }
   .welcome small { font-size: 12px; }
   .welcome h1 { font: 700 26px/1.2 var(--font-body); text-transform: none; letter-spacing: 0; }
   .welcome .acts { display: flex; gap: 8px; flex-wrap: wrap; }
   .btn-white { background: #fff; color: #1b1d22; }
   .btn-maroon { background: #7c2d12; color: #fff; }
+  .btn-red { background: #b91c1c; color: #fff; }
+  .btn-yellow { background: #ca8a04; color: #1b1d22; }
+  .btn-up { background: transparent; color: var(--accent); border: 1px solid var(--accent); justify-self: start; }
   .plan-chip { display: inline-block; margin-left: 8px; font: 700 11px var(--font-body); background: #1b1d22; color: #fff; padding: 3px 8px; border-radius: 999px; vertical-align: middle; }
 
   .panel { background: #34363c; border: 1px solid #40434a; border-radius: 12px; padding: 16px; min-width: 0; }
-  .panel-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .panel-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
   .panel-head h2 { font: 700 16px var(--font-body); text-transform: none; letter-spacing: 0; display: flex; align-items: center; gap: 8px; }
-  .panel-head a, .panel-head button.link { color: var(--accent); font-size: 12px; background: none; border: 0; cursor: pointer; font-family: inherit; }
+  .panel-head a, .linkbtn { color: var(--accent); font-size: 12px; background: none; border: 0; cursor: pointer; font-family: inherit; padding: 0; }
   .tier { font: 700 10px var(--font-body); letter-spacing: .06em; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; }
   .tier.pro { background: #3a1d0d; color: #fdba74; }
   .tier.elite { background: #1e1b4b; color: #c4b5fd; }
+  .vhead .tier.pro { background: #fff; color: #9a3412; }
+  .vhead .tier.elite { background: #fff; color: #4c1d95; }
+  .sub { font-size: 12px; color: var(--muted); }
 
+  /* Tables */
+  .tbl { overflow-x: auto; }
+  .tbl table { width: 100%; min-width: 620px; border-collapse: collapse; font-size: 13px; }
+  .tbl th, .tbl td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #45484f; vertical-align: middle; }
+  .tbl th { font-size: 12px; color: #c9ccd2; font-weight: 600; }
+  .tbl tr:last-child td { border-bottom: 0; }
+  .tbl td .acts { display: flex; gap: 6px; }
+  .tbl .num { font-variant-numeric: tabular-nums; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; align-items: center; margin-bottom: 12px; }
+  .toolbar input, .toolbar select { width: auto; min-width: 200px; }
+  .toolbar .grow { margin-right: auto; }
+  .pager { display: flex; justify-content: flex-end; gap: 14px; font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid #45484f; margin-bottom: 14px; overflow-x: auto; }
+  .tabs button { background: none; border: 0; border-bottom: 2px solid transparent; color: #d4d6db; font: 600 14px var(--font-body); padding: 10px 12px; cursor: pointer; white-space: nowrap; }
+  .tabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* Forms */
+  .form { display: grid; gap: 12px; }
+  .form .row3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .form .row4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .form .row2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .form h3 { font: 700 15px var(--font-body); text-transform: none; letter-spacing: 0; margin-top: 4px; }
+  .form .btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .profile-grid { display: grid; grid-template-columns: 1fr 180px; gap: 20px; align-items: start; }
+  .avatar { width: 150px; height: 150px; border-radius: 50%; background: #7c2d12; border: 4px solid #4a4d55; display: grid; place-items: center; font: 800 46px var(--font-display); color: #fde3d2; margin: 0 auto; }
+  .avatar-col { display: grid; gap: 8px; justify-items: center; text-align: center; font-size: 13px; font-weight: 600; }
+  .swatches { display: flex; gap: 8px; }
+  .swatches i { width: 34px; height: 34px; border-radius: 8px; display: block; border: 2px solid #4a4d55; }
+  .swatches i.on { border-color: #fff; }
+
+  /* Home bits */
   .setup-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 13px; }
   .setup-top b { font-size: 15px; }
   .bar { height: 6px; background: #4a4d55; border-radius: 9px; margin: 10px 0 12px; overflow: hidden; }
-  .bar i { display: block; height: 100%; background: var(--accent); border-radius: 9px; transition: width .3s ease; }
+  .bar i { display: block; height: 100%; background: var(--accent); border-radius: 9px; }
   .tasks { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
-  .task { display: flex; align-items: center; gap: 8px; padding: 9px 10px; border: 1px solid #4a4d55; border-radius: 8px; background: #2c2e33; font-size: 13px; cursor: pointer; color: var(--fg); font-family: inherit; text-align: left; }
+  .task { display: flex; align-items: center; gap: 8px; padding: 9px 10px; border: 1px solid #4a4d55; border-radius: 8px; background: #2c2e33; font-size: 13px; color: var(--fg); }
   .task .dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #8b8f99; flex: none; display: grid; place-items: center; font-size: 10px; }
   .task.done { color: #8b8f99; text-decoration: line-through; }
   .task.done .dot { background: var(--good); border-color: var(--good); color: #fff; }
   .task.next { border-color: var(--accent); }
-
   .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
   .kpi small { font-size: 13px; color: #c9ccd2; }
   .kpi b { display: block; font: 800 40px/1.1 var(--font-display); margin: 4px 0 2px; font-variant-numeric: tabular-nums; }
   .kpi .note { font-size: 12px; color: var(--muted); }
   .kpi .up { color: #86efac; }
   .kpi.warn b { color: #fdba74; }
-
   .grid2 { display: grid; grid-template-columns: 1.45fr 1fr; gap: 14px; align-items: start; }
   .col { display: grid; gap: 14px; min-width: 0; }
   .sess { display: grid; grid-template-columns: 70px 4px 1fr auto; gap: 12px; align-items: center; background: #2c2e33; border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
@@ -75,81 +119,128 @@
   .sess .time span, .sess .what span { font-size: 11px; color: var(--muted); }
   .sess .rail { height: 32px; border-radius: 4px; }
   .sess .what { min-width: 0; } .sess .what b { display: block; font-size: 14px; }
-
-  .req { background: #2c2e33; border-radius: 8px; padding: 12px; margin-bottom: 8px; }
-  .req b { display: block; font-size: 14px; }
-  .req span { font-size: 12px; color: var(--muted); }
-  .req .row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
-  .req .status { margin-top: 10px; font-size: 13px; font-weight: 600; }
-
-  .update form { display: grid; gap: 10px; }
-  .update .foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .checks { display: flex; gap: 14px; font-size: 13px; flex-wrap: wrap; }
-  .checks input { width: auto; accent-color: var(--blue); }
-  .checks label { display: flex; align-items: center; gap: 5px; }
-  .checks label.off { color: var(--muted); }
-  .sub { font-size: 12px; color: var(--muted); }
-
-  .event { background: #2c2e33; border-radius: 8px; padding: 12px; }
-  .event .top { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; }
-  .event .top span { font-size: 12px; color: var(--muted); }
-  .event .bar { margin: 10px 0 6px; } .event .bar i { background: var(--good); }
-
-  .link-box { border-color: var(--accent); }
-  .link-box p { font-size: 13px; color: #c9ccd2; }
-  .copy { display: flex; align-items: center; gap: 8px; background: #1f2125; border-radius: 8px; padding: 8px 8px 8px 12px; margin: 12px 0 10px; }
-  .copy code { font: 13px var(--font-body); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .link-box a { color: var(--accent); font-size: 13px; }
-
-  /* Plan usage */
   .use { display: grid; gap: 12px; }
   .use-row .top { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; }
   .use-row .top span { color: var(--muted); font-variant-numeric: tabular-nums; }
   .use-row .bar { margin: 6px 0 0; }
   .use-row.full .bar i { background: #f59e0b; }
-  .use-row.none .top span { color: #8b8f99; }
   .upsell { margin-top: 14px; background: #2c2e33; border: 1px dashed #5a5d66; border-radius: 8px; padding: 10px 12px; font-size: 12px; color: #c9ccd2; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .upsell a { color: var(--accent); font-weight: 600; white-space: nowrap; }
-
-  .teams { display: grid; gap: 8px; }
-  .team { background: #2c2e33; border-radius: 8px; padding: 10px 12px; }
-  .team .top { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; }
-  .team .top span { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
-  .team .bar { margin: 8px 0 0; height: 5px; }
-  .add-team { margin-top: 10px; }
+  .upsell a, .upsell button { color: var(--accent); font-weight: 600; white-space: nowrap; }
+  .copy { display: flex; align-items: center; gap: 8px; background: #1f2125; border-radius: 8px; padding: 8px 8px 8px 12px; margin: 12px 0 10px; }
+  .copy code { font: 13px var(--font-body); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .limit-msg { margin-top: 10px; background: #451a03; color: #fed7aa; border-radius: 8px; padding: 10px 12px; font-size: 12px; }
-  .limit-msg a { color: #fff; font-weight: 700; }
+  .limit-msg button { color: #fff; font-weight: 700; background: none; border: 0; text-decoration: underline; cursor: pointer; font: inherit; padding: 0; }
 
-  /* Feature tiles with locked states */
-  .feats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .feat { background: #2c2e33; border-radius: 8px; padding: 12px; display: grid; gap: 6px; align-content: start; min-width: 0; }
-  .feat h3 { font: 700 14px var(--font-body); text-transform: none; letter-spacing: 0; display: flex; justify-content: space-between; gap: 8px; }
-  .feat p { font-size: 12px; color: var(--muted); }
-  .feat .big { font: 800 26px/1 var(--font-display); color: var(--fg); }
-  .feat .bar { margin: 4px 0 0; height: 5px; } .feat .bar i { background: var(--good); }
-  .feat .lck { display: grid; gap: 8px; }
-  .feat .lck p { color: #b4b7bf; }
-  .feat.locked { background: #26282d; border: 1px dashed #4a4d55; }
-  .feat.locked h3 { color: #b4b7bf; }
-  .btn-up { background: transparent; color: var(--accent); border: 1px solid var(--accent); justify-self: start; }
-  .note-row { font-size: 12px; background: #1f2125; border-radius: 6px; padding: 8px; color: #d4d6db; }
-  .note-row b { color: var(--fg); }
+  /* Calendar */
+  .seg { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+  .seg button { font: 600 13px var(--font-body); background: #e5e7eb; color: #1b1d22; border: 0; border-radius: 6px; padding: 7px 12px; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+  .month { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border: 1px solid #55585f; border-radius: 8px; overflow: hidden; margin-top: 12px; }
+  .month .dh { background: #2c2e33; text-align: center; font-size: 12px; font-weight: 700; padding: 6px 0; border-bottom: 1px solid #55585f; }
+  .month .d { min-height: 92px; border-right: 1px solid #45484f; border-bottom: 1px solid #45484f; padding: 4px 5px; display: grid; align-content: start; gap: 3px; min-width: 0; }
+  .month .d:nth-child(7n) { border-right: 0; }
+  .month .d .n { font-size: 12px; text-align: right; color: #d4d6db; }
+  .month .d.out .n { color: #6b6f78; }
+  .month .d.today { background: #3a1d0d; }
+  .month .d.today .n { color: var(--accent); font-weight: 800; }
+  .ev { display: block; border-radius: 3px; padding: 2px 5px; color: #fff; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ev.o { background: var(--accent-deep); } .ev.b { background: var(--blue); } .ev.g { background: var(--good); } .ev.v { background: var(--violet); }
+  .agenda .ag { display: grid; grid-template-columns: 110px 90px 1fr auto; gap: 12px; align-items: center; padding: 10px 12px; background: #2c2e33; border-radius: 8px; margin-bottom: 8px; font-size: 13px; }
+  .agenda .ag b.d { color: var(--accent); }
+  .week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+  .week .wc { background: #2c2e33; border-radius: 8px; padding: 8px; min-height: 220px; display: grid; align-content: start; gap: 6px; min-width: 0; }
+  .week .wc h4 { margin: 0; font-size: 12px; text-align: center; }
+  .week .wc.today { outline: 2px solid var(--accent); }
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
 
-  @media (max-width: 1100px) { .tasks { grid-template-columns: repeat(3, 1fr); } .grid2 { grid-template-columns: 1fr; } }
+  /* Availability */
+  .slots { display: grid; grid-template-columns: 70px repeat(7, minmax(0, 1fr)); gap: 3px; font-size: 12px; text-align: center; }
+  .slots .h { font-weight: 700; padding: 6px 0; background: #2c2e33; border-radius: 4px; }
+  .slots .h.today { background: var(--accent-deep); }
+  .slots .t { color: var(--muted); text-align: right; padding: 8px 6px 0 0; }
+  .slots button { border: 0; border-radius: 4px; min-height: 34px; background: #3f4249; color: #9ca0aa; font: 600 11px var(--font-body); cursor: pointer; }
+  .slots button.open { background: var(--good); color: #fff; }
+  .slots button.bk { background: var(--accent-deep); color: #fff; cursor: default; }
+
+  /* Pills */
+  .st { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px; white-space: nowrap; display: inline-block; }
+  .st.ok { background: var(--good-soft); color: #86efac; }
+  .st.wait { background: var(--warn-soft); color: #fdba74; }
+  .st.no { background: #3f1d1d; color: #fca5a5; }
+  .st.info { background: #1e3a8a; color: #bfdbfe; }
+
+  /* Locked view */
+  .locked { background: #26282d; border: 1px dashed #5a5d66; border-radius: 12px; padding: 28px; display: grid; gap: 12px; justify-items: start; }
+  .locked h2 { font: 800 28px var(--font-display); text-transform: uppercase; }
+  .locked p { color: #c9ccd2; max-width: 60ch; }
+  .locked ul { margin: 0; padding-left: 18px; color: #c9ccd2; display: grid; gap: 6px; font-size: 14px; }
+  .ghost { opacity: .35; pointer-events: none; filter: grayscale(.4); }
+
+  /* Cards */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .card2 { background: #2c2e33; border-radius: 10px; padding: 14px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+  .card2 b { font-size: 14px; }
+  .card2 .big { font: 800 30px/1 var(--font-display); }
+  .card2 .bar { margin: 4px 0 0; height: 5px; } .card2 .bar i { background: var(--good); }
+  .card2.current { outline: 2px solid var(--accent); }
+
+  /* Messages */
+  .inbox { display: grid; grid-template-columns: 280px 1fr; gap: 14px; align-items: start; }
+  .thread { display: grid; gap: 2px; }
+  .thread button { text-align: left; background: #2c2e33; border: 0; border-radius: 8px; padding: 10px 12px; color: var(--fg); font-family: inherit; cursor: pointer; display: grid; gap: 2px; }
+  .thread button[aria-pressed="true"] { background: #3a1d0d; outline: 1px solid var(--accent); }
+  .thread button b { font-size: 13px; } .thread button span { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bubbles { display: grid; gap: 8px; margin-bottom: 12px; }
+  .bub { max-width: 75%; background: #2c2e33; border-radius: 10px; padding: 9px 12px; font-size: 13px; }
+  .bub.me { justify-self: end; background: var(--accent-deep); }
+  .bub small { display: block; font-size: 10px; color: #c9ccd2; margin-top: 3px; }
+  .checks { display: flex; gap: 14px; font-size: 13px; flex-wrap: wrap; }
+  .checks input { width: auto; accent-color: var(--blue); }
+  .checks label { display: flex; align-items: center; gap: 5px; }
+  .checks label.off { color: var(--muted); }
+
+  /* Reports */
+  .chart { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; align-items: end; height: 200px; padding: 10px 6px 0; border-bottom: 1px solid #55585f; }
+  .chart div { display: grid; gap: 6px; justify-items: center; align-self: end; }
+  .chart i { display: block; width: 70%; max-width: 54px; background: var(--accent); border-radius: 4px 4px 0 0; }
+  .chart i.cur { background: #fb923c; }
+  .chart span { font-size: 11px; color: #c9ccd2; font-variant-numeric: tabular-nums; }
+  .chart-x { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; text-align: center; font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+  /* Subscriptions */
+  .subgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .subcard { background: #2c2e33; border: 1px solid #45484f; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px; position: relative; }
+  .subcard.cur { border: 2px solid var(--accent); }
+  .subcard .tag { position: absolute; top: -11px; left: 18px; background: var(--accent); color: var(--accent-ink); font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; }
+  .subcard h3 { font-size: 26px; } .subcard h3 b { color: var(--accent); }
+  .subcard .amt { font: 800 40px/1 var(--font-display); } .subcard .amt small { font: 500 12px var(--font-body); color: var(--muted); }
+  .subcard ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; font-size: 13px; }
+  .subcard li::before { content: "✓ "; color: var(--good); font-weight: 700; }
+  .subcard .btn { margin-top: auto; }
+
+  /* FAQ */
+  details.fq { background: #2c2e33; border-radius: 8px; padding: 12px 14px; }
+  details.fq summary { cursor: pointer; font-weight: 600; font-size: 14px; display: flex; justify-content: space-between; gap: 10px; }
+  details.fq p { color: #c9ccd2; font-size: 13px; margin-top: 8px; }
+  .fq-list { display: grid; gap: 8px; }
+
+  @media (max-width: 1100px) { .tasks { grid-template-columns: repeat(3, 1fr); } .grid2, .inbox { grid-template-columns: 1fr; } .cards, .subgrid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 860px) {
     .app { grid-template-columns: 1fr; }
     .side { position: static; height: auto; padding: 10px max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px)); }
-    .side .brand { margin-bottom: 8px; }
     .side nav { display: flex; overflow-x: auto; gap: 4px; padding-bottom: 4px; }
-    .side nav a { white-space: nowrap; }
-    .plan { display: none; }
+    .side nav a { white-space: nowrap; } .side nav .grp, .plan, .logout { display: none; }
     .main { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
     .kpis { grid-template-columns: repeat(2, 1fr); }
+    .profile-grid { grid-template-columns: 1fr; } .avatar-col { order: -1; }
+    .form .row3, .form .row4 { grid-template-columns: 1fr 1fr; }
+    .week { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 520px) {
-    .tasks, .feats { grid-template-columns: 1fr; }
-    .sess { grid-template-columns: 68px 4px 1fr; gap: 10px; }
-    .sess .pill { grid-column: 3; justify-self: start; }
+    .tasks, .cards, .subgrid, .form .row2, .form .row3, .form .row4 { grid-template-columns: 1fr; }
+    .month .d { min-height: 60px; } .month .ev { font-size: 0; height: 6px; padding: 0; }
+    .agenda .ag { grid-template-columns: 1fr; gap: 2px; }
   }
 </style>
 </head>
@@ -165,322 +256,427 @@
 <div class="app">
   <aside class="side">
     <a class="brand" href="./"><img src="assets/logo.png" alt=""><span>Sports<b>365</b></span></a>
-    <nav aria-label="Dashboard">
-      <a class="on" href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</a>
-      <a href="#" data-soon><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Profile</a>
-      <a href="#" data-soon><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Calendar</a>
-      <a href="#" data-soon><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>Events</a>
-      <a href="#requests"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/></svg>Pending Requests<span class="count" id="side-count">2</span></a>
-      <a href="#" data-soon><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12l3 3 5-6"/></svg>Booked Sessions</a>
-      <a href="#" data-soon><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Availability</a>
-      <a href="#teams"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5M17 11a3 3 0 0 0 0-6M21 20c0-2-1.5-4-4-4.5"/></svg>Team Management</a>
-      <a href="#update"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Messages</a>
-      <a href="#pro-tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 15l2 2 4-4"/></svg>Waivers &amp; Forms<span class="lock" data-lock="pro">PRO</span></a>
-      <a href="#pro-tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Progress Notes<span class="lock" data-lock="pro">PRO</span></a>
-      <a href="#elite-tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 8l-9-5-9 5 9 5zM3 8v8l9 5 9-5V8"/></svg>Session Packages<span class="lock" data-lock="elite">ELITE</span></a>
-      <a href="#elite-tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Reports<span class="lock" data-lock="elite">ELITE</span></a>
-      <a href="./#pricing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Subscriptions</a>
-      <a href="#" data-soon><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4M12 17h.01"/></svg>FAQs</a>
-    </nav>
-    <div class="plan"><b id="plan-name">365 Pro</b><span class="muted" id="plan-renew">Yearly · renews Oct 15, 2027</span><a href="./#pricing">Compare plans →</a></div>
+    <nav aria-label="Dashboard" id="nav"></nav>
+    <div class="plan"><b id="plan-name">365 Pro</b><span class="muted" id="plan-renew"></span><button class="linkbtn" type="button" data-go="subscriptions" style="text-align:left;font-weight:600">Manage plan →</button></div>
+    <button class="btn btn-sm logout" type="button" data-toast="Demo: you'd be logged out">Logout</button>
   </aside>
-
-  <main class="main">
-    <section class="welcome">
-      <div><small>Thursday, October 15</small><h1>Welcome back, Coach Jordan <span class="plan-chip" id="plan-chip">365 Pro</span></h1></div>
-      <div class="acts">
-        <button class="btn btn-white btn-sm" type="button" id="share-top">🔗 Share booking link</button>
-        <button class="btn btn-maroon btn-sm" type="button" data-soon>+ Create</button>
-      </div>
-    </section>
-
-    <section class="panel">
-      <div class="setup-top"><b id="setup-title">Get set up: 3 of 5 done</b><span class="muted">Coaches who finish setup get their first booking faster</span></div>
-      <div class="bar"><i id="setup-bar" style="width:60%"></i></div>
-      <div class="tasks" id="tasks">
-        <button class="task done" type="button"><span class="dot">✓</span>Complete your profile</button>
-        <button class="task done" type="button"><span class="dot">✓</span>Add your first team</button>
-        <button class="task done" type="button"><span class="dot">✓</span>Set your availability</button>
-        <button class="task next" type="button"><span class="dot"></span>Create your first event</button>
-        <button class="task" type="button"><span class="dot"></span>Share your booking link</button>
-      </div>
-    </section>
-
-    <section class="kpis">
-      <div class="panel kpi"><small>Sessions this week</small><b>7</b><span class="note up">2 more than last week</span></div>
-      <div class="panel kpi warn"><small>Pending requests</small><b id="kpi-pending">2</b><span class="note">Respond within 24 hours</span></div>
-      <div class="panel kpi"><small>Athletes on rosters</small><b id="kpi-athletes">24</b><span class="note" id="kpi-teams">Across 2 of 5 teams</span></div>
-      <div class="panel kpi"><small>Booked this month</small><b>$840</b><span class="note">14 sessions · 1 event</span></div>
-    </section>
-
-    <div class="grid2">
-      <div class="col">
-        <section class="panel">
-          <div class="panel-head"><h2>Today's schedule</h2><a href="#" data-soon>Open calendar</a></div>
-          <div class="sess"><div class="time"><b>4:00 PM</b><span>60 min</span></div><i class="rail" style="background:var(--blue)"></i><div class="what"><b>Private 1-on-1 · Jordan M.</b><span id="pkg-line">Ball handling · Main Street Rec Center</span></div><span class="pill pill-good">Paid</span></div>
-          <div class="sess"><div class="time"><b>5:00 PM</b><span>75 min</span></div><i class="rail" style="background:var(--violet)"></i><div class="what"><b>Small group · Guards (10 athletes)</b><span>Week 4 of 8 · Academy series</span></div><span class="pill pill-good">Paid</span></div>
-          <div class="sess"><div class="time"><b>6:30 PM</b><span>90 min</span></div><i class="rail" style="background:var(--accent)"></i><div class="what"><b>Team practice · Eastside Elite 15U</b><span>12 of 14 confirmed</span></div><span class="pill pill-warn">2 no reply</span></div>
-        </section>
-
-        <section class="panel" id="pro-tools">
-          <div class="panel-head"><h2>Waivers, forms &amp; player notes <span class="tier pro">Pro</span></h2></div>
-          <div class="feats">
-            <div class="feat" data-need="pro">
-              <h3>Waivers &amp; forms</h3>
-              <div class="unl">
-                <div class="big">12 / 14</div>
-                <p>Eastside Elite 15U signed the liability waiver</p>
-                <div class="bar"><i style="width:86%"></i></div>
-                <button class="btn btn-ghost btn-sm" type="button" data-toast="Demo: reminder sent to the 2 families who haven't signed" style="margin-top:8px">Remind 2 families</button>
-              </div>
-              <div class="lck"><p>Collect signed waivers and medical forms before the first practice.</p><a class="btn btn-up btn-sm" href="./#pricing">Upgrade to 365 Pro</a></div>
-            </div>
-            <div class="feat" data-need="pro">
-              <h3>Progress notes</h3>
-              <div class="unl">
-                <div class="note-row"><b>Jordan M.</b> · Oct 13<br>Left-hand finishes up to 7 of 10. Next: off-hand floaters.</div>
-                <p style="margin-top:6px">Parents see notes in their free account</p>
-                <button class="btn btn-ghost btn-sm" type="button" data-toast="Demo: a new note would open here" style="margin-top:4px">+ Add a note</button>
-              </div>
-              <div class="lck"><p>Track each athlete's skills and share progress with parents.</p><a class="btn btn-up btn-sm" href="./#pricing">Upgrade to 365 Pro</a></div>
-            </div>
-            <div class="feat" data-need="pro" style="grid-column:1/-1">
-              <h3>Automated reminders</h3>
-              <div class="unl"><p>Families get a text and email 24 hours before every session and practice. <span id="txt-use">212 of 500 texts used this month.</span></p></div>
-              <div class="lck"><p>Stop sending reminder texts by hand. Sports365 sends them for you.</p><a class="btn btn-up btn-sm" href="./#pricing">Upgrade to 365 Pro</a></div>
-            </div>
-          </div>
-        </section>
-
-        <section class="panel" id="elite-tools">
-          <div class="panel-head"><h2>Packages &amp; reports <span class="tier elite">Elite</span></h2></div>
-          <div class="feats">
-            <div class="feat" data-need="elite">
-              <h3>Session packages</h3>
-              <div class="unl">
-                <div class="big">4 active</div>
-                <p>10-session packs · $500 each</p>
-                <div class="note-row" style="margin-top:6px"><b>Jordan M.</b> · 6 of 10 sessions left</div>
-              </div>
-              <div class="lck"><p>Sell 5- and 10-session packs. Parents pay once, and sessions count down automatically.</p><a class="btn btn-up btn-sm" href="./#pricing">Upgrade to 365 Elite</a></div>
-            </div>
-            <div class="feat" data-need="elite">
-              <h3>October report</h3>
-              <div class="unl">
-                <div class="big">$840</div>
-                <p>Revenue · up 18% from September</p>
-                <p>Attendance 92% · 3 athletes haven't booked in 30 days</p>
-              </div>
-              <div class="lck"><p>See revenue, attendance and which athletes are slipping away.</p><a class="btn btn-up btn-sm" href="./#pricing">Upgrade to 365 Elite</a></div>
-            </div>
-            <div class="feat" data-need="elite" style="grid-column:1/-1">
-              <h3>Your branding</h3>
-              <div class="unl"><p>Your logo and colors appear on your booking page. <a href="book.html" style="color:var(--accent)">See it →</a></p></div>
-              <div class="lck"><p>Put your own logo and colors on your booking page.</p><a class="btn btn-up btn-sm" href="./#pricing">Upgrade to 365 Elite</a></div>
-            </div>
-          </div>
-        </section>
-
-        <section class="panel update" id="update">
-          <div class="panel-head"><h2>Send an update</h2></div>
-          <form id="update-form">
-            <label class="field">Send to
-              <select id="u-to"><option value="14">Eastside Elite 15U · 14 families</option><option value="10">Guards small group · 10 families</option><option value="24">All my families · 24 families</option></select>
-            </label>
-            <label class="field">Message<textarea id="u-msg">Practice tonight moves to 7:00 PM at the East gym. Bring white and black jerseys.</textarea></label>
-            <div class="foot">
-              <div class="checks"><label><input type="checkbox" id="u-push" checked>Push</label><label><input type="checkbox" id="u-email" checked>Email</label><label id="u-text-l"><input type="checkbox" id="u-text" checked>Text</label></div>
-              <button class="btn btn-primary" type="submit" id="u-send">Send to 14 families</button>
-            </div>
-            <p class="sub" id="u-text-note">Texts count toward your 500 a month on 365 Pro.</p>
-          </form>
-        </section>
-      </div>
-
-      <div class="col">
-        <section class="panel">
-          <div class="panel-head"><h2>Your plan</h2><a href="./#pricing" id="plan-link">Compare plans</a></div>
-          <div class="use" id="usage"></div>
-          <div class="upsell" id="upsell"></div>
-        </section>
-
-        <section class="panel" id="teams">
-          <div class="panel-head"><h2>Your teams</h2><span class="sub" id="teams-count">2 of 5</span></div>
-          <div class="teams" id="team-list"></div>
-          <button class="btn btn-ghost btn-sm btn-block add-team" type="button" id="add-team">+ Add a team</button>
-          <div class="limit-msg" id="limit-msg" hidden></div>
-        </section>
-
-        <section class="panel" id="requests">
-          <div class="panel-head"><h2>Pending requests</h2><a href="#" data-soon>View all</a></div>
-          <div class="req"><b>Private 1-on-1 · Ava R. (Grade 7)</b><span>Tue, Oct 20 · 5:00 PM · requested by parent</span><div class="row"><button class="btn btn-good btn-sm" type="button" data-act="accept">Accept</button><button class="btn btn-mute btn-sm" type="button" data-act="decline">Decline</button></div></div>
-          <div class="req"><b>Small group spot · Marcus H. (Grade 9)</b><span>Thu, Oct 22 · 5:00 PM · 1 spot left</span><div class="row"><button class="btn btn-good btn-sm" type="button" data-act="accept">Accept</button><button class="btn btn-mute btn-sm" type="button" data-act="decline">Decline</button></div></div>
-        </section>
-
-        <section class="panel">
-          <div class="panel-head"><h2>Upcoming events</h2><a href="#" data-soon>Manage</a></div>
-          <div class="event"><div class="top"><b>Fall Shooting Clinic</b><span>Sat, Oct 24</span></div><div class="bar"><i style="width:73%"></i></div><span class="fine">22 of 30 spots filled · $40 each</span></div>
-        </section>
-
-        <section class="panel link-box">
-          <div class="panel-head" style="margin-bottom:6px"><h2>Your booking link</h2></div>
-          <p>Put it in your Instagram bio so parents can book you in seconds.</p>
-          <div class="copy"><code id="book-url">sports365app.com/coach/jordan-reed</code><button class="btn btn-primary btn-sm" type="button" id="copy-btn">Copy</button></div>
-          <a href="book.html">Preview your public page →</a>
-        </section>
-      </div>
-    </div>
-  </main>
+  <main class="main" id="main"></main>
 </div>
 
 <div class="toast" id="toast" hidden></div>
 <script>
-  const toast = document.getElementById('toast');
-  let tm;
-  function show(msg) { toast.textContent = msg; toast.hidden = false; clearTimeout(tm); tm = setTimeout(() => { toast.hidden = true; }, 2600); }
-  document.querySelectorAll('[data-soon]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); show('That page isn\'t built in this demo yet'); }));
-  document.querySelectorAll('[data-toast]').forEach(el => el.addEventListener('click', () => show(el.dataset.toast)));
+/* ---------------- Basics ---------------- */
+const $ = s => document.querySelector(s);
+const toastEl = $('#toast'); let tm;
+function show(msg) { toastEl.textContent = msg; toastEl.hidden = false; clearTimeout(tm); tm = setTimeout(() => { toastEl.hidden = true; }, 2600); }
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-  // ---- Plans ----
-  const PLANS = {
-    basic: { name: '365 Basic', rank: 0, teams: 2, asst: 1, storage: 2, texts: 0, renew: 'Yearly · $64.99 · renews Oct 15, 2027' },
-    pro:   { name: '365 Pro',   rank: 1, teams: 5, asst: 3, storage: 15, texts: 500, renew: 'Yearly · $104.99 · renews Oct 15, 2027' },
-    elite: { name: '365 Elite', rank: 2, teams: 10, asst: 6, storage: 50, texts: 2000, renew: 'Yearly · $159.99 · renews Oct 15, 2027' }
+const PLANS = {
+  basic: { name: '365 Basic', rank: 0, teams: 2, asst: 1, storage: 2, texts: 0, price: { m: '$7.99', q: '$19.99', y: '$64.99' } },
+  pro:   { name: '365 Pro',   rank: 1, teams: 5, asst: 3, storage: 15, texts: 500, price: { m: '$12.99', q: '$32.99', y: '$104.99' } },
+  elite: { name: '365 Elite', rank: 2, teams: 10, asst: 6, storage: 50, texts: 2000, price: { m: '$19.99', q: '$49.99', y: '$159.99' } }
+};
+const ROSTER_MAX = 55;
+let plan = 'pro';
+try { const s = localStorage.getItem('s365-plan'); if (PLANS[s]) plan = s; } catch (e) {}
+const has = need => PLANS[plan].rank >= PLANS[need].rank;
+const P = () => PLANS[plan];
+
+/* ---------------- Demo data ---------------- */
+const teams = [
+  { id: 't1', name: 'Eastside Elite 15U Boys', sport: 'Basketball', desc: '2026–2027 travel roster' },
+  { id: 't2', name: 'Guards Small Group', sport: 'Basketball', desc: 'Tue/Thu skills group' }
+];
+const roster = {
+  t1: [
+    ['Marcus Hill', 'mhill.parent@email.com', '#3 · PG', 'player', 'Accepted'],
+    ['Andre Lewis', 'alewis.family@email.com', '#11 · SG', 'player', 'Accepted'],
+    ['Chris Ortiz', 'ortiz.home@email.com', '#24 · SF', 'player', 'Pending'],
+    ['Jalen Brooks', 'brooksfam@email.com', '#5 · PG', 'player', 'Accepted'],
+    ['Devin Carter', 'dcarter.mom@email.com', '#33 · C', 'player', 'Accepted'],
+    ['Coach Taylor', 'coach.taylor@email.com', 'Assistant Coach', 'co-coach', 'Accepted']
+  ],
+  t2: [
+    ['Jordan Miles', 'miles.parent@email.com', 'Guard', 'player', 'Accepted'],
+    ['Ava Ramirez', 'ramirez.fam@email.com', 'Guard', 'player', 'Accepted'],
+    ['Marcus Hill', 'mhill.parent@email.com', 'Guard', 'player', 'Accepted']
+  ]
+};
+const rosterCount = { t1: 14, t2: 10 };
+let events = [
+  { name: 'Fall Shooting Clinic', date: 'Sat, Nov 7', time: '9:00 AM', place: 'Main Street Rec Center', price: '$40', spots: '22 / 30', pay: 'Both', ages: 'Grades 5–8' },
+  { name: 'Holiday Guard Camp', date: 'Mon, Dec 28', time: '10:00 AM', place: 'East Gym', price: '$120', spots: '9 / 24', pay: 'Card', ages: 'Grades 6–9' },
+  { name: 'Parent Night: Recruiting 101', date: 'Thu, Nov 19', time: '7:00 PM', place: 'Online (Zoom)', price: 'Free', spots: '31 / 50', pay: '—', ages: 'All' }
+];
+let requests = [
+  { who: 'Ava R. (Grade 7)', parent: 'Maria Ramirez', type: 'Private 1-on-1', when: 'Tue, Nov 3 · 5:00 PM', price: '$60', state: 'new' },
+  { who: 'Marcus H. (Grade 9)', parent: 'Tanya Hill', type: 'Small group spot', when: 'Thu, Nov 5 · 5:00 PM', price: '$30', state: 'new' },
+  { who: 'Liam P. (Grade 6)', parent: 'Sean Patel', type: 'Private 1-on-1', when: 'Sat, Nov 7 · 4:00 PM', price: '$60', state: 'new' }
+];
+const booked = [
+  ['Jordan M.', 'Private 1-on-1', 'Mon, Nov 2 · 4:00 PM', 'Main Street Rec', '$60', 'Paid · card', 'pkg'],
+  ['Guards group (10)', 'Small group', 'Mon, Nov 2 · 5:00 PM', 'Main Street Rec', '$300', 'Paid', ''],
+  ['Ava R.', 'Private 1-on-1', 'Wed, Nov 4 · 5:00 PM', 'Main Street Rec', '$60', 'Pay after session', ''],
+  ['Jalen B.', 'Private 1-on-1', 'Fri, Nov 6 · 4:00 PM', 'East Gym', '$60', 'Paid · Cash App', 'pkg'],
+  ['Devin C.', 'Shooting form', 'Sat, Nov 7 · 1:00 PM', 'East Gym', '$60', 'Paid · Zelle', '']
+];
+let faqs = [
+  ['What should my athlete bring?', 'A basketball, water and court shoes. Wear clothes you can move in.'],
+  ['What is your cancellation policy?', 'Cancel or reschedule up to 24 hours before a session at no charge.'],
+  ['Do you train beginners?', 'Yes. Sessions are built around each athlete, from first-timers to varsity players.']
+];
+
+/* Calendar: November 2026, Nov 1 is a Sunday. Today = Mon Nov 2 */
+const CAL = {
+  2: [['o', '6p Practice'], ['b', '4p 1-on-1']], 3: [['b', '5p 1-on-1']], 4: [['o', '6p Practice'], ['b', '5p 1-on-1']], 5: [['v', '5p Small grp']],
+  6: [['b', '4p 1-on-1']], 7: [['v', '9a Clinic'], ['g', '1p Game']], 9: [['o', '6p Practice']], 10: [['b', '5p 1-on-1']], 11: [['o', '6p Practice']],
+  12: [['v', '5p Small grp']], 14: [['g', '10a Game']], 16: [['o', '6p Practice']], 18: [['o', '6p Practice']], 19: [['v', '7p Parent night']],
+  21: [['g', '11a Tournament']], 22: [['g', '9a Tournament']], 23: [['o', '6p Practice']], 30: [['o', '6p Practice']]
+};
+const CAL_NAMES = { o: 'Team practice · Eastside Elite 15U', b: 'Private 1-on-1', v: 'Small group / event', g: 'Game · Eastside Elite 15U' };
+
+/* ---------------- Navigation ---------------- */
+const IC = {
+  home: '<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+  profile: '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',
+  calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+  events: '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/>',
+  requests: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/>',
+  booked: '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12l3 3 5-6"/>',
+  availability: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  teams: '<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5M17 11a3 3 0 0 0 0-6M21 20c0-2-1.5-4-4-4.5"/>',
+  messages: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+  waivers: '<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 15l2 2 4-4"/>',
+  notes: '<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
+  packages: '<path d="M21 8l-9-5-9 5 9 5zM3 8v8l9 5 9-5V8"/>',
+  reports: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+  subscriptions: '<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>',
+  faqs: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4M12 17h.01"/>'
+};
+const NAV = [
+  ['home', 'Home'], ['profile', 'Profile'], ['calendar', 'Calendar'], ['events', 'Events'], ['requests', 'Pending Requests'],
+  ['booked', 'Booked Sessions'], ['availability', 'Availability'], ['teams', 'Team Management'], ['messages', 'Messages'],
+  ['grp', 'Pro & Elite tools'], ['waivers', 'Waivers & Forms', 'pro'], ['notes', 'Progress Notes', 'pro'], ['packages', 'Session Packages', 'elite'], ['reports', 'Reports', 'elite'],
+  ['grp', 'Account'], ['subscriptions', 'Subscriptions'], ['faqs', 'FAQs']
+];
+let view = 'home';
+const VIEWS = NAV.filter(n => n[0] !== 'grp').map(n => n[0]);
+
+function renderNav() {
+  const pending = requests.filter(r => r.state === 'new').length;
+  $('#nav').innerHTML = NAV.map(([id, label, need]) => {
+    if (id === 'grp') return `<span class="grp">${label}</span>`;
+    const extra = id === 'requests' && pending ? `<span class="count">${pending}</span>`
+      : need && !has(need) ? `<span class="lock">${need.toUpperCase()}</span>` : '';
+    return `<a href="#${id}" data-go="${id}" class="${view === id ? 'on' : ''}"${view === id ? ' aria-current="page"' : ''}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">${IC[id]}</svg>${label}${extra}</a>`;
+  }).join('');
+}
+
+function head(title, sub, acts = '', tier = '') {
+  const t = tier ? ` <span class="tier ${tier}">${tier}</span>` : '';
+  return `<section class="vhead"><div><h1>${title}${t}</h1>${sub ? `<p>${sub}</p>` : ''}</div>${acts ? `<div class="acts">${acts}</div>` : ''}</section>`;
+}
+function lockedView(title, need, desc, bullets, preview) {
+  const name = PLANS[need].name;
+  return head(title, '', '', need) + `<section class="locked"><span class="tier ${need}">Included with ${name}${need === 'pro' ? ' and Elite' : ''}</span><h2>${title}</h2><p>${desc}</p><ul>${bullets.map(b => `<li>${b}</li>`).join('')}</ul><button class="btn btn-primary" type="button" data-go="subscriptions">Upgrade to ${name}</button></section>` + (preview ? `<div class="ghost" aria-hidden="true">${preview}</div>` : '');
+}
+
+/* ---------------- Views ---------------- */
+const V = {};
+
+V.home = () => {
+  const p = P(), pending = requests.filter(r => r.state === 'new').length, atLimit = teams.length >= p.teams;
+  const athletes = teams.reduce((s, t) => s + (rosterCount[t.id] || 0), 0);
+  const nextUp = plan === 'basic' ? ['Need more teams, reminders or waivers? 365 Pro adds them for $12.99/mo.', 'See 365 Pro →']
+    : plan === 'pro' ? ['Sell session packages and get monthly reports with 365 Elite.', 'See 365 Elite →'] : ['Running more than 10 teams? 365 Organization is coming soon.', 'Join the waitlist →'];
+  return `<section class="welcome"><div><small>Monday, November 2</small><h1>Welcome back, Coach Jordan <span class="plan-chip">${p.name}</span></h1></div>
+    <div class="acts"><button class="btn btn-white btn-sm" type="button" data-copy>🔗 Share booking link</button><button class="btn btn-maroon btn-sm" type="button" data-go="events">+ Create event</button></div></section>
+  <section class="panel"><div class="setup-top"><b>Get set up: 3 of 5 done</b><span class="muted">Coaches who finish setup get their first booking faster</span></div><div class="bar"><i style="width:60%"></i></div>
+    <div class="tasks"><span class="task done"><span class="dot">✓</span>Complete your profile</span><span class="task done"><span class="dot">✓</span>Add your first team</span><span class="task done"><span class="dot">✓</span>Set your availability</span><button class="task next" type="button" data-go="events"><span class="dot"></span>Create your first event</button><button class="task" type="button" data-copy><span class="dot"></span>Share your booking link</button></div></section>
+  <section class="kpis">
+    <div class="panel kpi"><small>Sessions this week</small><b>7</b><span class="note up">2 more than last week</span></div>
+    <div class="panel kpi warn"><small>Pending requests</small><b>${pending}</b><span class="note">Respond within 24 hours</span></div>
+    <div class="panel kpi"><small>Athletes on rosters</small><b>${athletes}</b><span class="note">Across ${teams.length} of ${p.teams} teams</span></div>
+    <div class="panel kpi"><small>Booked this month</small><b>$840</b><span class="note">14 sessions · 1 event</span></div></section>
+  <div class="grid2"><div class="col">
+    <section class="panel"><div class="panel-head"><h2>Today's schedule</h2><button class="linkbtn" type="button" data-go="calendar">Open calendar</button></div>
+      <div class="sess"><div class="time"><b>4:00 PM</b><span>60 min</span></div><i class="rail" style="background:var(--blue)"></i><div class="what"><b>Private 1-on-1 · Jordan M.</b><span>${plan === 'elite' ? 'Ball handling · 10-session pack, 6 left' : 'Ball handling · Main Street Rec Center'}</span></div><span class="pill pill-good">Paid</span></div>
+      <div class="sess"><div class="time"><b>5:00 PM</b><span>75 min</span></div><i class="rail" style="background:var(--violet)"></i><div class="what"><b>Small group · Guards (10 athletes)</b><span>Week 4 of 8 · Academy series</span></div><span class="pill pill-good">Paid</span></div>
+      <div class="sess"><div class="time"><b>6:30 PM</b><span>90 min</span></div><i class="rail" style="background:var(--accent)"></i><div class="what"><b>Team practice · Eastside Elite 15U</b><span>12 of 14 confirmed</span></div><span class="pill pill-warn">2 no reply</span></div></section>
+    <section class="panel"><div class="panel-head"><h2>Pending requests</h2><button class="linkbtn" type="button" data-go="requests">View all</button></div>
+      ${requests.filter(r => r.state === 'new').slice(0, 2).map(r => `<div class="sess" style="grid-template-columns:1fr auto"><div class="what"><b>${r.type} · ${r.who}</b><span>${r.when}</span></div><button class="btn btn-ghost btn-sm" type="button" data-go="requests">Review</button></div>`).join('') || '<p class="sub">You\'re all caught up.</p>'}</section>
+  </div><div class="col">
+    <section class="panel"><div class="panel-head"><h2>Your plan</h2><button class="linkbtn" type="button" data-go="subscriptions">Compare plans</button></div>
+      <div class="use">${useRow('Teams', teams.length, p.teams, `${teams.length} of ${p.teams}`)}${useRow('Assistant coaches', 1, p.asst, `1 of ${p.asst}`)}${useRow('Storage', 1.4, p.storage, `1.4 of ${p.storage} GB`)}${p.texts ? useRow('Texts this month', 212, p.texts, `212 of ${p.texts.toLocaleString()}`) : '<div class="use-row"><div class="top"><b>Texts this month</b><span>Not included</span></div><div class="bar"><i style="width:0"></i></div></div>'}<p class="sub">Each team holds up to ${ROSTER_MAX} players. A player on two of your teams counts once.</p></div>
+      <div class="upsell"><span>${nextUp[0]}</span><button class="linkbtn" type="button" data-go="subscriptions">${nextUp[1]}</button></div></section>
+    <section class="panel"><div class="panel-head"><h2>Your booking link</h2></div><p class="sub">Put it in your Instagram bio so parents can book you in seconds.</p>
+      <div class="copy"><code>sports365app.com/coach/jordan-reed</code><button class="btn btn-primary btn-sm" type="button" data-copy>Copy</button></div><a href="book.html" style="color:var(--accent);font-size:13px">Preview your public page →</a></section>
+  </div></div>`;
+};
+function useRow(label, used, max, txt) { return `<div class="use-row${used >= max ? ' full' : ''}"><div class="top"><b>${label}</b><span>${txt}</span></div><div class="bar"><i style="width:${Math.min(100, Math.round(used / max * 100))}%"></i></div></div>`; }
+
+V.profile = () => head('Profile', 'This is what families see on your public booking page.', '<a class="btn btn-white btn-sm" href="book.html">Preview public page</a>') +
+  `<section class="panel"><form class="form" id="profile-form"><div class="profile-grid"><div class="form">
+    <label class="field">Name<input id="pf-name" value="Coach Jordan Reed"></label>
+    <label class="field">Email<input id="pf-email" type="email" value="coach.jordan@email.com"></label>
+    <label class="field">Phone number<input id="pf-phone" type="tel" value="+1 (555) 555-0142"></label>
+    <label class="field">Bio<textarea id="pf-bio" rows="3">Basketball skills trainer · Head coach, Eastside Elite 15U
+Ball handling, finishing and shooting for grades 4–12.</textarea></label>
+    <div class="row3"><label class="field">City<input id="pf-city" value="Your city"></label><label class="field">State<input id="pf-state" value="NJ"></label><label class="field">Zip code<input id="pf-zip" value="07000"></label></div>
+    <label class="field">Specialization<input id="pf-spec" value="Basketball"></label>
+    <h3>Social links (optional)</h3>
+    <div class="row4"><label class="field">Facebook<input id="pf-fb" placeholder="Facebook"></label><label class="field">YouTube<input id="pf-yt" value="youtube.com/@coachjordan"></label><label class="field">Instagram<input id="pf-ig" value="instagram.com/coachjordan"></label><label class="field">TikTok<input id="pf-tt" value="tiktok.com/@coachjordan"></label></div>
+  </div><div class="avatar-col"><div class="avatar" aria-hidden="true">JR</div><button class="linkbtn" type="button" data-toast="Demo: pick a new profile photo">Change profile picture</button><span class="sub">Shown on your booking page</span></div></div>
+  <div class="btns"><button class="btn btn-primary" type="submit">Update profile</button><button class="btn btn-yellow" type="button" data-toast="Demo: a change password form would open">Change password</button><button class="btn btn-red" type="button" data-toast="Demo: you'd be asked to confirm before anything is deleted">Delete profile</button></div></form></section>
+  <section class="panel">${has('elite') ? `<div class="panel-head"><h2>Your branding <span class="tier elite">Elite</span></h2><a href="book.html" style="color:var(--accent);font-size:12px">See it on your booking page →</a></div>
+    <div class="form"><div class="row2"><label class="field">Business name on your page<input id="pf-biz" value="JR Hoops"></label><div class="field">Brand color<div class="swatches"><i class="on" style="background:#1e3a8a"></i><i style="background:#c2410c"></i><i style="background:#166534"></i><i style="background:#111827"></i></div></div></div>
+    <div class="btns"><button class="btn btn-ghost btn-sm" type="button" data-toast="Demo: upload your logo">Upload logo</button></div></div>`
+    : `<div class="panel-head"><h2>Your branding <span class="tier elite">Elite</span></h2></div><p class="sub" style="margin-bottom:10px">Put your own logo, business name and colors on your booking page.</p><button class="btn btn-up btn-sm" type="button" data-go="subscriptions">Upgrade to 365 Elite</button>`}</section>`;
+
+let calMode = 'month';
+V.calendar = () => {
+  const acts = '<button class="btn btn-white btn-sm" type="button" data-toast="Demo: connects your Google Calendar">Sync with Google Calendar</button>';
+  const seg = `<div class="seg" role="group" aria-label="Calendar view">${[['week', 'Week'], ['month', 'Month'], ['year', 'Year'], ['agenda', 'Sports Agenda']].map(([k, l]) => `<button type="button" data-cal="${k}" aria-pressed="${calMode === k}">${l}</button>`).join('')}</div>`;
+  let body = '';
+  if (calMode === 'month' || calMode === 'year') {
+    let cells = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(d => `<div class="dh">${d}</div>`).join('');
+    const days = [26, 27, 28, 29, 30, 31].map(n => ({ n, out: true })).concat(Array.from({ length: 30 }, (_, i) => ({ n: i + 1 }))).concat([1, 2, 3, 4, 5, 6].map(n => ({ n, out: true })));
+    cells += days.map(d => `<div class="d${d.out ? ' out' : ''}${!d.out && d.n === 2 ? ' today' : ''}"><span class="n">${String(d.n).padStart(2, '0')}</span>${!d.out && CAL[d.n] ? CAL[d.n].map(([c, t]) => `<span class="ev ${c}">${t}</span>`).join('') : ''}</div>`).join('');
+    body = `<div class="panel-head" style="margin:12px 0 0"><h2>November 2026</h2><span class="sub">${calMode === 'year' ? 'Year view shows all 12 months in the real app. This demo shows November.' : 'Tap a day to see details'}</span></div><div class="month">${cells}</div>`;
+  } else if (calMode === 'week') {
+    const wk = [['Sun', 1], ['Mon', 2], ['Tue', 3], ['Wed', 4], ['Thu', 5], ['Fri', 6], ['Sat', 7]];
+    body = `<div class="panel-head" style="margin:12px 0 0"><h2>November 1 – 7</h2></div><div class="week">${wk.map(([d, n]) => `<div class="wc${n === 2 ? ' today' : ''}"><h4>${d} ${n}</h4>${(CAL[n] || []).map(([c, t]) => `<span class="ev ${c}">${t}</span>`).join('') || '<span class="sub" style="text-align:center">Open</span>'}</div>`).join('')}</div>`;
+  } else {
+    const rows = Object.keys(CAL).map(Number).filter(n => n >= 2 && n <= 14).flatMap(n => CAL[n].map(([c, t]) => {
+      const [time, ...rest] = t.split(' ');
+      const dow = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][(n - 1) % 7];
+      return `<div class="ag"><b class="d">${dow}, Nov ${n}</b><span>${time.replace('p', ':00 PM').replace('a', ':00 AM')}</span><span>${rest.join(' ')} · ${CAL_NAMES[c].split(' · ')[1] || CAL_NAMES[c]}</span><span class="ev ${c}" style="justify-self:end">${CAL_NAMES[c].split(' · ')[0]}</span></div>`;
+    }));
+    body = `<div class="panel-head" style="margin:12px 0 0"><h2>Next two weeks</h2></div><div class="agenda">${rows.join('')}</div>`;
+  }
+  return head('Calendar', 'Practices, games, sessions and events in one place.', acts) + `<section class="panel">${seg}${body}<div class="legend"><span><i style="background:var(--accent-deep)"></i>Team practice</span><span><i style="background:var(--blue)"></i>Private session</span><span><i style="background:var(--violet)"></i>Group / event</span><span><i style="background:var(--good)"></i>Game</span></div></section>`;
+};
+
+let showEventForm = false, eventQuery = '';
+V.events = () => {
+  const list = events.filter(e => e.name.toLowerCase().includes(eventQuery.toLowerCase()));
+  return head('Events', 'Camps, clinics and parent nights families can register for.') + (showEventForm ? `<section class="panel"><div class="panel-head"><h2>Create new event</h2><button class="linkbtn" type="button" id="ev-cancel">Cancel</button></div>
+    <form class="form" id="ev-form"><label class="field">Event title *<input id="ev-name" required placeholder="e.g. Winter Ball Handling Clinic"></label>
+    <div class="row3"><label class="field">Event date *<input id="ev-date" required placeholder="Sat, Dec 12"></label><label class="field">Event time *<input id="ev-time" required placeholder="9:00 AM"></label><label class="field">Event price *<input id="ev-price" required placeholder="$40"></label></div>
+    <div class="row3"><label class="field">Event place *<input id="ev-place" required placeholder="Gym name"></label><label class="field">Spot limit<input id="ev-spots" placeholder="30"></label><label class="field">Payment<select id="ev-pay"><option>Both</option><option>Card</option><option>Cash</option></select></label></div>
+    <div class="row2"><label class="field">Age restriction<input id="ev-ages" placeholder="Grades 5–8"></label><label class="field">Flyer<input id="ev-flyer" type="file" accept="image/*"></label></div>
+    <div class="btns"><button class="btn btn-good" type="submit">Create event</button></div></form></section>` : '') +
+  `<section class="panel"><div class="toolbar"><button class="btn btn-good btn-sm" type="button" id="ev-new">Create event</button><input id="ev-q" type="search" placeholder="Search event" value="${esc(eventQuery)}" aria-label="Search events"></div>
+  <div class="tbl"><table><thead><tr><th>Event</th><th>Date &amp; time</th><th>Place</th><th>Ages</th><th>Price</th><th>Spots filled</th><th>Payment</th><th>Actions</th></tr></thead><tbody>
+  ${list.map(e => `<tr><td><b>${esc(e.name)}</b></td><td>${esc(e.date)} · ${esc(e.time)}</td><td>${esc(e.place)}</td><td>${esc(e.ages)}</td><td class="num">${esc(e.price)}</td><td class="num">${esc(e.spots)}</td><td>${esc(e.pay)}</td><td><div class="acts"><button class="btn btn-sm" style="background:#60a5fa;color:#0b1220" type="button" data-toast="Demo: event page with the registration list">View</button><button class="btn btn-sm btn-yellow" type="button" data-toast="Demo: edit this event">Edit</button></div></td></tr>`).join('') || '<tr><td colspan="8" style="text-align:center;color:var(--muted)">No events match your search.</td></tr>'}
+  </tbody></table></div><div class="pager">Rows per page: 10 · 1–${list.length} of ${list.length}</div></section>`;
+};
+
+V.requests = () => head('Pending Requests', 'Families asking to book you. Accept to add it to Booked Sessions.') + `<section class="panel"><div class="tbl"><table><thead><tr><th>Athlete</th><th>Parent</th><th>Session</th><th>Requested time</th><th>Price</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+  ${requests.map((r, i) => `<tr><td><b>${r.who}</b></td><td>${r.parent}</td><td>${r.type}</td><td>${r.when}</td><td class="num">${r.price}</td><td>${r.state === 'new' ? '<span class="st wait">Waiting on you</span>' : r.state === 'ok' ? '<span class="st ok">Accepted</span>' : '<span class="st no">Declined</span>'}</td><td>${r.state === 'new' ? `<div class="acts"><button class="btn btn-good btn-sm" type="button" data-req="${i}" data-act="ok">Accept</button><button class="btn btn-mute btn-sm" type="button" data-req="${i}" data-act="no">Decline</button></div>` : '<span class="sub">Family notified</span>'}</td></tr>`).join('')}
+  </tbody></table></div></section>`;
+
+V.booked = () => head('Booked Sessions', 'Every confirmed session, with payment status.') + `<section class="panel"><div class="tbl"><table><thead><tr><th>Athlete</th><th>Session</th><th>Date &amp; time</th><th>Location</th><th>Price</th><th>Payment</th>${has('elite') ? '<th>Package</th>' : ''}${has('pro') ? '<th>Reminder</th>' : ''}</tr></thead><tbody>
+  ${booked.concat(requests.filter(r => r.state === 'ok').map(r => [r.who, r.type, r.when, 'Main Street Rec', r.price, 'Pay after session', ''])).map(b => `<tr><td><b>${b[0]}</b></td><td>${b[1]}</td><td>${b[2]}</td><td>${b[3]}</td><td class="num">${b[4]}</td><td>${b[5].startsWith('Paid') ? `<span class="st ok">${b[5]}</span>` : `<span class="st wait">${b[5]}</span>`}</td>${has('elite') ? `<td>${b[6] ? '<span class="st info">10-pack · 6 left</span>' : '<span class="sub">—</span>'}</td>` : ''}${has('pro') ? '<td><span class="sub">Text + email, 24 hrs before</span></td>' : ''}</tr>`).join('')}
+  </tbody></table></div>${has('pro') ? '' : '<div class="upsell"><span>Want Sports365 to text families a reminder before every session? Included with 365 Pro.</span><button class="linkbtn" type="button" data-go="subscriptions">See 365 Pro →</button></div>'}</section>`;
+
+const AV_DAYS = ['Sun 1', 'Mon 2', 'Tue 3', 'Wed 4', 'Thu 5', 'Fri 6', 'Sat 7'];
+const AV_TIMES = ['3 PM', '4 PM', '5 PM', '6 PM', '7 PM'];
+const avail = {};
+[[1, 1], [1, 2], [2, 1], [2, 2], [3, 1], [3, 2], [4, 1], [4, 2], [5, 1], [6, 0], [6, 1], [6, 2], [1, 3], [3, 3]].forEach(([d, t]) => { avail[d + '-' + t] = 'open'; });
+[[1, 1], [2, 2], [3, 2], [5, 1], [6, 2]].forEach(([d, t]) => { avail[d + '-' + t] = 'bk'; });
+V.availability = () => head('Trainer Availability', 'Click a time to open or close it. Families can only request open times.', '<button class="btn btn-good btn-sm" type="button" data-toast="Demo: copy this week\'s hours to future weeks">Create schedule</button>') +
+  `<section class="panel"><div class="panel-head"><h2>November 1 – 7</h2><button class="btn btn-ghost btn-sm" type="button" data-toast="Demo: jumps to this week">Today</button></div>
+  <div class="tbl"><div class="slots" style="min-width:620px"><span></span>${AV_DAYS.map((d, i) => `<span class="h${i === 1 ? ' today' : ''}">${d}</span>`).join('')}
+  ${AV_TIMES.map((t, ti) => `<span class="t">${t}</span>${AV_DAYS.map((d, di) => { const s = avail[di + '-' + ti]; return `<button type="button" class="${s || ''}" data-slot="${di}-${ti}" aria-label="${d} ${t}: ${s === 'bk' ? 'booked' : s === 'open' ? 'open' : 'closed'}">${s === 'bk' ? 'Booked' : s === 'open' ? 'Open' : ''}</button>`; }).join('')}`).join('')}</div></div>
+  <div class="legend"><span><i style="background:var(--good)"></i>Open for requests</span><span><i style="background:var(--accent-deep)"></i>Booked</span><span><i style="background:#3f4249"></i>Closed</span></div></section>`;
+
+let teamTab = 'team', teamSel = 't1';
+V.teams = () => {
+  const p = P(), atLimit = teams.length >= p.teams;
+  const tabs = `<div class="tabs" role="tablist">${[['team', 'Team'], ['roster', 'Roster'], ['schedule', 'Schedule'], ['assignments', 'Assignments'], ['tavail', 'Availability']].map(([k, l]) => `<button type="button" role="tab" data-ttab="${k}" aria-selected="${teamTab === k}">${l}</button>`).join('')}</div>`;
+  const picker = `<select id="team-sel" aria-label="Team">${teams.map(t => `<option value="${t.id}"${t.id === teamSel ? ' selected' : ''}>${esc(t.name)}</option>`).join('')}</select>`;
+  let body = '';
+  if (teamTab === 'team') {
+    body = `<div class="toolbar"><span class="sub grow">${teams.length} of ${p.teams} teams on ${p.name} · up to ${ROSTER_MAX} players each</span>${atLimit ? '' : '<button class="btn btn-good btn-sm" type="button" id="add-team">Add team</button>'}</div>
+    <div class="tbl"><table><thead><tr><th>Team name</th><th>Sport</th><th>Description</th><th>Players</th><th>Actions</th></tr></thead><tbody>
+    ${teams.map(t => `<tr><td><b>${esc(t.name)}</b></td><td>${t.sport}</td><td>${esc(t.desc)}</td><td class="num">${rosterCount[t.id] || 0} of ${ROSTER_MAX}</td><td><div class="acts"><button class="btn btn-sm" style="background:#60a5fa;color:#0b1220" type="button" data-roster="${t.id}">View</button><button class="btn btn-sm btn-yellow" type="button" data-toast="Demo: edit team details">Edit</button><button class="btn btn-sm btn-red" type="button" data-toast="Demo: you'd be asked to confirm first">Delete</button></div></td></tr>`).join('')}
+    </tbody></table></div>${atLimit ? `<div class="limit-msg">You're using all ${p.teams} teams on ${p.name}. ${plan === 'elite' ? 'Join the 365 Organization waitlist for more.' : `<button type="button" data-go="subscriptions">Upgrade to ${plan === 'basic' ? '365 Pro' : '365 Elite'}</button> for up to ${plan === 'basic' ? 5 : 10} teams.`}</div>` : ''}`;
+  } else if (teamTab === 'roster') {
+    const r = roster[teamSel] || [];
+    body = `<div class="toolbar"><span class="sub grow">${rosterCount[teamSel] || 0} of ${ROSTER_MAX} players</span><button class="btn btn-good btn-sm" type="button" data-toast="Demo: invite a player or coach by email or text">Add roster</button><button class="btn btn-sm btn-yellow" type="button" data-toast="Demo: downloads the roster as a spreadsheet">Export</button>${picker}</div>
+    <div class="tbl"><table><thead><tr><th>Name</th><th>Contact info</th><th># / Position</th><th>Role</th><th>Status</th>${has('pro') ? '<th>Waiver</th>' : ''}<th>Actions</th></tr></thead><tbody>
+    ${r.map((x, i) => `<tr><td><b>${x[0]}</b></td><td>${x[1]}</td><td>${x[2]}</td><td>${x[3]}</td><td>${x[4] === 'Accepted' ? '<span class="st ok">Accepted</span>' : '<span class="st wait">Pending</span>'}</td>${has('pro') ? `<td>${x[3] === 'co-coach' ? '<span class="sub">—</span>' : i === 2 ? '<span class="st wait">Not signed</span>' : '<span class="st ok">Signed</span>'}</td>` : ''}<td><button class="btn btn-sm" style="background:#60a5fa;color:#0b1220" type="button" data-toast="Demo: player details and contact">View</button></td></tr>`).join('')}
+    </tbody></table></div><div class="pager">Showing ${r.length} of ${rosterCount[teamSel] || r.length} in this demo</div>`;
+  } else if (teamTab === 'schedule') {
+    body = `<div class="toolbar"><button class="btn btn-good btn-sm" type="button" data-toast="Demo: add a practice or game">Add</button>${picker}</div>
+    <div class="tbl"><table><thead><tr><th>Type</th><th>Date &amp; time</th><th>Opponent / focus</th><th>Location</th><th>Confirmed</th></tr></thead><tbody>
+    <tr><td><span class="st info">Practice</span></td><td>Mon, Nov 2 · 6:30 PM</td><td>Press break, free throws</td><td>East Gym</td><td class="num">12 of 14</td></tr>
+    <tr><td><span class="st info">Practice</span></td><td>Wed, Nov 4 · 6:30 PM</td><td>Half-court sets</td><td>East Gym</td><td class="num">9 of 14</td></tr>
+    <tr><td><span class="st ok">Game</span></td><td>Sat, Nov 7 · 1:00 PM</td><td>vs. Northgate Ballers</td><td>Northgate HS</td><td class="num">13 of 14</td></tr>
+    <tr><td><span class="st ok">Game</span></td><td>Sat, Nov 14 · 10:00 AM</td><td>@ Riverside Elite</td><td>Riverside Rec</td><td class="num">4 of 14</td></tr>
+    <tr><td><span class="st wait">Tournament</span></td><td>Nov 21–22</td><td>Thanksgiving Shootout</td><td>County Sports Complex</td><td class="num">—</td></tr>
+    </tbody></table></div>`;
+  } else if (teamTab === 'assignments') {
+    body = `<div class="toolbar"><button class="btn btn-good btn-sm" type="button" data-toast="Demo: create an assignment for the team or one player">Add assignment</button>${picker}</div>
+    <div class="tbl"><table><thead><tr><th>Assignment</th><th>Assigned to</th><th>Due</th><th>Completed</th></tr></thead><tbody>
+    <tr><td><b>Watch Northgate game film</b><br><span class="sub">Note 3 things their guards do on defense</span></td><td>Whole team</td><td>Fri, Nov 6</td><td class="num">8 of 14</td></tr>
+    <tr><td><b>200 form shots</b><br><span class="sub">Log makes in the app</span></td><td>Whole team</td><td>Sun, Nov 8</td><td class="num">5 of 14</td></tr>
+    <tr><td><b>Bring white and black jerseys</b></td><td>Whole team</td><td>Sat, Nov 7</td><td class="num">14 of 14</td></tr>
+    <tr><td><b>Left-hand finishing ladder</b></td><td>Chris Ortiz</td><td>Wed, Nov 4</td><td><span class="st wait">Not yet</span></td></tr>
+    </tbody></table></div>`;
+  } else {
+    const rows = [['Marcus Hill', 'yes', 'yes', 'yes'], ['Andre Lewis', 'yes', 'no', 'yes'], ['Chris Ortiz', 'wait', 'wait', 'wait'], ['Jalen Brooks', 'yes', 'yes', 'yes'], ['Devin Carter', 'yes', 'yes', 'no']];
+    const cell = v => v === 'yes' ? '<span class="st ok">Going</span>' : v === 'no' ? '<span class="st no">Can\'t make it</span>' : '<span class="st wait">No reply</span>';
+    body = `<div class="toolbar"><span class="sub grow">Players answer from their free account</span><button class="btn btn-ghost btn-sm" type="button" data-toast="Demo: nudge players who haven't replied">Remind no replies</button>${picker}</div>
+    <div class="tbl"><table><thead><tr><th>Player</th><th>Practice · Mon, Nov 2</th><th>Practice · Wed, Nov 4</th><th>Game · Sat, Nov 7</th></tr></thead><tbody>
+    ${rows.map(r => `<tr><td><b>${r[0]}</b></td>${r.slice(1).map(cell).map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}
+    </tbody></table></div>`;
+  }
+  return head('Team Management', 'Teams, rosters, schedules, assignments and player availability.') + `<section class="panel">${tabs}${body}</section>`;
+};
+
+let thread = 0;
+const THREADS = [
+  { name: 'Eastside Elite 15U · 14 families', last: 'Practice tonight moves to 7:00 PM…', msgs: [['me', 'Practice tonight moves to 7:00 PM at the East gym. Bring white and black jerseys.', 'Today 2:14 PM · sent to 14 families'], ['them', 'Got it, thanks Coach! — Tanya (Marcus\'s mom)', 'Today 2:20 PM']] },
+  { name: 'Maria Ramirez', last: 'Can Ava do Tuesday at 5?', msgs: [['them', 'Hi Coach, can Ava do Tuesday at 5 instead of Wednesday?', 'Yesterday 8:02 PM'], ['me', 'Tuesday at 5 works. I just sent the request to your account.', 'Yesterday 8:15 PM']] },
+  { name: 'Guards Small Group · 10 families', last: 'Week 5 focus: off-hand finishes', msgs: [['me', 'Week 5 focus: off-hand finishes. Come 10 minutes early to warm up.', 'Sun 6:00 PM · sent to 10 families']] }
+];
+V.messages = () => {
+  const t = THREADS[thread], p = P();
+  return head('Messages', 'Message one family, a team or everyone at once.') + `<div class="inbox"><section class="panel"><div class="panel-head"><h2>Conversations</h2></div><div class="thread">${THREADS.map((x, i) => `<button type="button" data-thread="${i}" aria-pressed="${i === thread}"><b>${x.name}</b><span>${x.last}</span></button>`).join('')}</div></section>
+  <section class="panel"><div class="panel-head"><h2>${t.name}</h2></div><div class="bubbles">${t.msgs.map(m => `<div class="bub${m[0] === 'me' ? ' me' : ''}">${m[1]}<small>${m[2]}</small></div>`).join('')}</div>
+  <form class="form" id="msg-form"><label class="field">New message<textarea id="msg-text" rows="2" placeholder="Write a message"></textarea></label>
+  <div class="btns" style="justify-content:space-between;align-items:center"><div class="checks"><label><input type="checkbox" id="m-push" checked>Push</label><label><input type="checkbox" id="m-email" checked>Email</label><label class="${p.texts ? '' : 'off'}"><input type="checkbox" id="m-text" ${p.texts ? 'checked' : 'disabled'}>Text</label></div><button class="btn btn-primary" type="submit">Send</button></div>
+  <p class="sub">${p.texts ? `Texts count toward your ${p.texts.toLocaleString()} a month on ${p.name}. 212 used.` : 'Texting families is included with 365 Pro and Elite. <button class="linkbtn" type="button" data-go="subscriptions">Compare plans</button>'}</p></form></section></div>`;
+};
+
+V.waivers = () => !has('pro') ? lockedView('Waivers & Forms', 'pro', 'Collect signed waivers and medical forms before the first practice, without paper.', ['Liability waivers, medical and photo-release forms', 'Parents sign once a season from their free account', 'See who hasn\'t signed and send a reminder in one click'], waiversBody()) : head('Waivers & Forms', 'Parents sign from their free account. You see who\'s missing.', '<button class="btn btn-white btn-sm" type="button" data-toast="Demo: create a form from a template or your own PDF">+ New form</button>', 'pro') + waiversBody();
+function waiversBody() {
+  return `<section class="cards"><div class="card2"><b>Liability waiver 2026–27</b><span class="big">12 / 14</span><span class="sub">Eastside Elite 15U signed</span><div class="bar"><i style="width:86%"></i></div><button class="btn btn-ghost btn-sm" type="button" data-toast="Demo: reminder sent to the 2 families who haven't signed">Remind 2 families</button></div>
+  <div class="card2"><b>Medical & emergency contact</b><span class="big">13 / 14</span><span class="sub">Includes allergies and insurance</span><div class="bar"><i style="width:93%"></i></div><button class="btn btn-ghost btn-sm" type="button" data-toast="Demo: reminder sent to 1 family">Remind 1 family</button></div>
+  <div class="card2"><b>Photo & video release</b><span class="big">11 / 14</span><span class="sub">1 family opted out of photos</span><div class="bar"><i style="width:79%"></i></div><button class="btn btn-ghost btn-sm" type="button" data-toast="Demo: reminder sent to 2 families">Remind 2 families</button></div></section>
+  <section class="panel"><div class="panel-head"><h2>Still waiting on</h2></div><div class="tbl"><table><thead><tr><th>Athlete</th><th>Parent</th><th>Missing</th><th>Last reminder</th></tr></thead><tbody>
+  <tr><td><b>Chris Ortiz</b></td><td>Luis Ortiz</td><td>Liability waiver, photo release</td><td>Oct 30</td></tr>
+  <tr><td><b>Devin Carter</b></td><td>Keisha Carter</td><td>Liability waiver</td><td>Not sent</td></tr></tbody></table></div></section>`;
+}
+
+V.notes = () => !has('pro') ? lockedView('Progress Notes', 'pro', 'Track each athlete\'s skills and share progress with their parents.', ['Private notes after every session', 'Parents see shared notes in their free account', 'Skill ratings that show improvement over time'], notesBody()) : head('Progress Notes', 'Shared notes appear in the parent\'s free account.', '<button class="btn btn-white btn-sm" type="button" data-toast="Demo: add a note for an athlete">+ Add note</button>', 'pro') + notesBody();
+function notesBody() {
+  const skill = (l, v) => `<div class="use-row"><div class="top"><b>${l}</b><span>${v} / 10</span></div><div class="bar"><i style="width:${v * 10}%;background:var(--good)"></i></div></div>`;
+  return `<div class="grid2"><section class="panel"><div class="panel-head"><h2>Jordan Miles · Grade 8 guard</h2><span class="sub">12 sessions</span></div>
+  <div class="tbl"><table><thead><tr><th>Date</th><th>Note</th><th>Shared</th></tr></thead><tbody>
+  <tr><td>Nov 2</td><td>Left-hand finishes up to 7 of 10. Next: off-hand floaters.</td><td><span class="st ok">With parent</span></td></tr>
+  <tr><td>Oct 26</td><td>Better footwork on step-backs. Still rushing his release when tired.</td><td><span class="st ok">With parent</span></td></tr>
+  <tr><td>Oct 19</td><td>Talked about confidence after a rough game. Keep it positive.</td><td><span class="st info">Private</span></td></tr></tbody></table></div></section>
+  <section class="panel"><div class="panel-head"><h2>Skill ratings</h2><span class="sub">Since September</span></div><div class="use">${skill('Ball handling', 7)}${skill('Finishing', 6)}${skill('Shooting form', 8)}${skill('Defense', 5)}</div></section></div>`;
+}
+
+V.packages = () => !has('elite') ? lockedView('Session Packages', 'elite', 'Sell 5- and 10-session packs. Parents pay once and sessions count down automatically.', ['Packages show up on your booking page', 'Remaining sessions tracked for every athlete', 'Reminders when a package is about to run out'], packagesBody()) : head('Session Packages', 'Parents pay once. Sessions count down automatically.', '<button class="btn btn-white btn-sm" type="button" data-toast="Demo: create a new package">+ New package</button>', 'elite') + packagesBody();
+function packagesBody() {
+  return `<section class="cards"><div class="card2"><b>10-session pack</b><span class="big">$500</span><span class="sub">Ten 60-min private sessions · saves $100</span><span class="st ok" style="justify-self:start">4 active</span></div>
+  <div class="card2"><b>5-session pack</b><span class="big">$275</span><span class="sub">Five 60-min private sessions · saves $25</span><span class="st ok" style="justify-self:start">2 active</span></div>
+  <div class="card2"><b>Small group monthly</b><span class="big">$100</span><span class="sub">8 group sessions in a month</span><span class="st ok" style="justify-self:start">6 active</span></div></section>
+  <section class="panel"><div class="panel-head"><h2>Active packages</h2></div><div class="tbl"><table><thead><tr><th>Athlete</th><th>Package</th><th>Sessions left</th><th>Bought</th><th>Status</th></tr></thead><tbody>
+  <tr><td><b>Jordan Miles</b></td><td>10-session pack</td><td class="num">6 of 10</td><td>Oct 1</td><td><span class="st ok">Active</span></td></tr>
+  <tr><td><b>Jalen Brooks</b></td><td>10-session pack</td><td class="num">2 of 10</td><td>Sep 12</td><td><span class="st wait">Running low · reminder sent</span></td></tr>
+  <tr><td><b>Ava Ramirez</b></td><td>5-session pack</td><td class="num">4 of 5</td><td>Oct 28</td><td><span class="st ok">Active</span></td></tr></tbody></table></div></section>`;
+}
+
+V.reports = () => !has('elite') ? lockedView('Reports', 'elite', 'See revenue, attendance and which athletes are slipping away.', ['Monthly revenue by sessions, events and packages', 'Attendance rate for every team', 'Athletes who haven\'t booked in 30 days'], reportsBody()) : head('Reports', 'October 2026 · updated daily', '<button class="btn btn-white btn-sm" type="button" data-toast="Demo: downloads a spreadsheet">Export</button>', 'elite') + reportsBody();
+function reportsBody() {
+  const months = [['Jun', 420], ['Jul', 610], ['Aug', 560], ['Sep', 712], ['Oct', 840], ['Nov', 260]];
+  const max = 900;
+  return `<section class="kpis"><div class="panel kpi"><small>Revenue · October</small><b>$840</b><span class="note up">Up 18% from September</span></div><div class="panel kpi"><small>Attendance</small><b>92%</b><span class="note">Across all teams</span></div><div class="panel kpi"><small>Active athletes</small><b>24</b><span class="note">3 new this month</span></div><div class="panel kpi warn"><small>Slipping away</small><b>3</b><span class="note">No booking in 30 days</span></div></section>
+  <div class="grid2"><section class="panel"><div class="panel-head"><h2>Revenue by month</h2><span class="sub">Nov is month to date</span></div><div class="chart">${months.map(([m, v], i) => `<div><span>$${v}</span><i class="${i === 4 ? 'cur' : ''}" style="height:${Math.round(v / max * 160)}px"></i></div>`).join('')}</div><div class="chart-x">${months.map(m => `<span>${m[0]}</span>`).join('')}</div></section>
+  <section class="panel"><div class="panel-head"><h2>Haven't booked in 30 days</h2></div><div class="tbl"><table style="min-width:0"><tbody>
+  <tr><td><b>Kevin S.</b></td><td>Last session Sep 24</td><td><button class="btn btn-ghost btn-sm" type="button" data-toast="Demo: send a check-in message">Check in</button></td></tr>
+  <tr><td><b>Mia T.</b></td><td>Last session Sep 29</td><td><button class="btn btn-ghost btn-sm" type="button" data-toast="Demo: send a check-in message">Check in</button></td></tr>
+  <tr><td><b>Noah W.</b></td><td>Last session Oct 1</td><td><button class="btn btn-ghost btn-sm" type="button" data-toast="Demo: send a check-in message">Check in</button></td></tr></tbody></table></div></section></div>`;
+}
+
+let billing = 'y';
+V.subscriptions = () => {
+  const feats = {
+    basic: ['2 teams · up to 55 players each', '1 assistant coach · 2 GB', 'Calendar, events, bookings', 'Team management & profile'],
+    pro: ['5 teams · up to 55 players each', '3 assistant coaches · 15 GB', 'Automated reminders (500 texts/mo)', 'Waivers, forms & progress notes'],
+    elite: ['10 teams · up to 55 players each', '6 assistant coaches · 50 GB', 'Session packages & your branding', 'Reports, 2,000 texts/mo, priority support']
   };
-  const ROSTER_MAX = 55;
-  const teams = [
-    { name: 'Eastside Elite 15U Boys', players: 14 },
-    { name: 'Guards Small Group', players: 10 }
-  ];
-  const extraNames = ['Eastside Elite 13U', 'Summer Shooting Crew', 'Girls Skills Group', 'Varsity Prep', 'Bigs Footwork', 'Saturday Clinic Group', 'Middle School Guards', 'Fall League Team'];
-  let plan = 'pro';
-  try { const saved = localStorage.getItem('s365-plan'); if (PLANS[saved]) plan = saved; } catch (e) {}
+  const per = { m: '/ month', q: '/ 3 months', y: '/ year' };
+  return head('Subscriptions', `You're on ${P().name}, billed yearly. Renews Oct 15, 2027.`) + `<section class="panel"><div class="panel-head"><h2>Choose a plan</h2><div class="seg" role="group" aria-label="Billing period">${[['m', 'Monthly'], ['q', '3 months · save 15%'], ['y', 'Yearly · save 33%']].map(([k, l]) => `<button type="button" data-bill="${k}" aria-pressed="${billing === k}">${l}</button>`).join('')}</div></div>
+  <div class="subgrid">${Object.entries(PLANS).map(([k, pl]) => `<div class="subcard${k === plan ? ' cur' : ''}">${k === plan ? '<span class="tag">CURRENT PLAN</span>' : ''}<h3>365 <b>${pl.name.replace('365 ', '')}</b></h3><div class="amt">${pl.price[billing]} <small>${per[billing]}</small></div><ul>${feats[k].map(f => `<li>${f}</li>`).join('')}</ul>${k === plan ? '<button class="btn btn-ghost btn-block" type="button" disabled>Your plan</button>' : `<button class="btn ${pl.rank > P().rank ? 'btn-primary' : 'btn-ghost'} btn-block" type="button" data-switch="${k}">${pl.rank > P().rank ? 'Upgrade' : 'Switch'} to ${pl.name}</button>`}</div>`).join('')}</div>
+  <p class="sub" style="margin-top:12px">Every plan starts with a 30-day free trial. Cancel anytime. Parents and athletes are always free.</p></section>
+  <section class="panel"><div class="panel-head"><h2>Billing history</h2></div><div class="tbl"><table><thead><tr><th>Date</th><th>Description</th><th>Amount</th><th>Status</th></tr></thead><tbody>
+  <tr><td>Oct 15, 2026</td><td>${P().name} · yearly</td><td class="num">${P().price.y}</td><td><span class="st ok">Paid</span></td></tr>
+  <tr><td>Sep 15, 2026</td><td>Free trial started</td><td class="num">$0.00</td><td><span class="st info">Trial</span></td></tr></tbody></table></div></section>`;
+};
 
-  function pct(a, b) { return Math.min(100, Math.round(a / b * 100)); }
+let showFaqForm = false;
+V.faqs = () => head('FAQs', 'Answers families see on your public booking page.', '<button class="btn btn-good btn-sm" type="button" id="faq-new">+ Add FAQ</button>') +
+  (showFaqForm ? `<section class="panel"><form class="form" id="faq-form"><label class="field">Question<input id="faq-q" required placeholder="e.g. Where are sessions held?"></label><label class="field">Answer<textarea id="faq-a" rows="2" required></textarea></label><div class="btns"><button class="btn btn-good" type="submit">Save FAQ</button><button class="btn btn-ghost" type="button" id="faq-cancel">Cancel</button></div></form></section>` : '') +
+  `<section class="panel"><div class="fq-list">${faqs.map((f, i) => `<details class="fq"${i === 0 ? ' open' : ''}><summary>${esc(f[0])}<span class="sub">Shown on your page</span></summary><p>${esc(f[1])}</p></details>`).join('')}</div></section>`;
 
-  function render() {
-    const p = PLANS[plan];
-    document.querySelectorAll('.viewas button').forEach(b => b.setAttribute('aria-pressed', b.dataset.plan === plan ? 'true' : 'false'));
-    document.getElementById('plan-name').textContent = p.name;
-    document.getElementById('plan-chip').textContent = p.name;
-    document.getElementById('plan-renew').textContent = p.renew;
+/* ---------------- Render + events ---------------- */
+function render() {
+  const p = P();
+  document.querySelectorAll('.viewas button').forEach(b => b.setAttribute('aria-pressed', b.dataset.plan === plan ? 'true' : 'false'));
+  $('#plan-name').textContent = p.name;
+  $('#plan-renew').textContent = `Yearly · ${p.price.y} · renews Oct 15, 2027`;
+  renderNav();
+  $('#main').innerHTML = `<div class="view">${V[view]()}</div>`;
+}
+function go(v) { if (!V[v]) return; view = v; render(); window.scrollTo(0, 0); try { history.replaceState(null, '', '#' + v); } catch (e) {} }
+function setPlan(k, quiet) { plan = k; try { localStorage.setItem('s365-plan', k); } catch (e) {} render(); if (!quiet) show(`Now viewing as a ${PLANS[k].name} coach`); }
 
-    // locked features
-    document.querySelectorAll('[data-need]').forEach(el => {
-      const ok = p.rank >= PLANS[el.dataset.need].rank;
-      el.classList.toggle('locked', !ok);
-      el.querySelector('.unl').hidden = !ok;
-      el.querySelector('.lck').hidden = ok;
-    });
-    document.querySelectorAll('[data-lock]').forEach(el => { el.hidden = p.rank >= PLANS[el.dataset.lock].rank; });
-    document.getElementById('pkg-line').textContent = plan === 'elite' ? 'Ball handling · 10-session pack, 6 left' : 'Ball handling · Main Street Rec Center';
-
-    // usage
-    const athletes = teams.reduce((s, t) => s + t.players, 0);
-    const rows = [
-      { label: 'Teams', used: teams.length, max: p.teams, fmt: `${teams.length} of ${p.teams}` },
-      { label: 'Assistant coaches', used: 1, max: p.asst, fmt: `1 of ${p.asst}` },
-      { label: 'Storage', used: 1.4, max: p.storage, fmt: `1.4 of ${p.storage} GB` },
-      p.texts ? { label: 'Texts this month', used: 212, max: p.texts, fmt: `212 of ${p.texts.toLocaleString()}` } : { label: 'Texts this month', none: true, fmt: 'Not included' }
-    ];
-    document.getElementById('usage').innerHTML = rows.map(r => r.none
-      ? `<div class="use-row none"><div class="top"><b>${r.label}</b><span>${r.fmt}</span></div><div class="bar"><i style="width:0"></i></div></div>`
-      : `<div class="use-row${r.used >= r.max ? ' full' : ''}"><div class="top"><b>${r.label}</b><span>${r.fmt}</span></div><div class="bar"><i style="width:${pct(r.used, r.max)}%"></i></div></div>`).join('')
-      + `<p class="sub">Each team holds up to ${ROSTER_MAX} players. A player on two of your teams counts once.</p>`;
-    const up = document.getElementById('upsell');
-    if (plan === 'basic') up.innerHTML = `<span>Need more teams, reminders or waivers? 365 Pro adds them for $12.99/mo.</span><a href="./#pricing">See 365 Pro →</a>`;
-    else if (plan === 'pro') up.innerHTML = `<span>Sell session packages and get monthly reports with 365 Elite.</span><a href="./#pricing">See 365 Elite →</a>`;
-    else up.innerHTML = `<span>Running more than 10 teams? 365 Organization is coming soon.</span><a href="./#pricing">Join the waitlist →</a>`;
-
-    // teams
-    document.getElementById('team-list').innerHTML = teams.map(t =>
-      `<div class="team"><div class="top"><b>${t.name}</b><span>${t.players} of ${ROSTER_MAX} players</span></div><div class="bar"><i style="width:${pct(t.players, ROSTER_MAX)}%"></i></div></div>`).join('');
-    document.getElementById('teams-count').textContent = `${teams.length} of ${p.teams}`;
-    document.getElementById('kpi-athletes').textContent = athletes;
-    document.getElementById('kpi-teams').textContent = `Across ${teams.length} of ${p.teams} teams`;
-    const atLimit = teams.length >= p.teams;
-    const lm = document.getElementById('limit-msg');
-    document.getElementById('add-team').hidden = atLimit;
-    lm.hidden = !atLimit;
-    if (atLimit) {
-      const next = plan === 'basic' ? '<a href="./#pricing">Upgrade to 365 Pro</a> for up to 5 teams.' : plan === 'pro' ? '<a href="./#pricing">Upgrade to 365 Elite</a> for up to 10 teams.' : '<a href="./#pricing">Join the 365 Organization waitlist</a> for more.';
-      lm.innerHTML = `You're using all ${p.teams} teams on ${p.name}. ${next}`;
-    }
-
-    // texting
-    const txt = document.getElementById('u-text'), txtL = document.getElementById('u-text-l');
-    txt.disabled = !p.texts; if (!p.texts) txt.checked = false;
-    txtL.classList.toggle('off', !p.texts);
-    document.getElementById('u-text-note').innerHTML = p.texts
-      ? `Texts count toward your ${p.texts.toLocaleString()} a month on ${p.name}.`
-      : `Texting families is included with 365 Pro and Elite. <a href="./#pricing" style="color:var(--accent)">Compare plans</a>`;
-    const tu = document.getElementById('txt-use'); if (tu && p.texts) tu.textContent = `212 of ${p.texts.toLocaleString()} texts used this month.`;
+document.addEventListener('click', async e => {
+  const t = e.target.closest('button, a'); if (!t) return;
+  const d = t.dataset;
+  if (d.go) { e.preventDefault(); go(d.go); return; }
+  if (d.plan) { setPlan(d.plan); return; }
+  if (d.toast) { show(d.toast); return; }
+  if (d.copy !== undefined) { try { await navigator.clipboard.writeText('https://sports365app.com/coach/jordan-reed'); show('Booking link copied'); } catch (err) { show('Link: sports365app.com/coach/jordan-reed'); } return; }
+  if (d.cal) { calMode = d.cal; render(); return; }
+  if (d.req) { const r = requests[+d.req]; r.state = d.act; render(); show(d.act === 'ok' ? 'Accepted. Added to Booked Sessions.' : 'Declined. The family was notified.'); return; }
+  if (d.slot) { const s = avail[d.slot]; if (s === 'bk') { show('This time is booked. Cancel the session to close it.'); return; } avail[d.slot] = s === 'open' ? '' : 'open'; render(); return; }
+  if (d.ttab) { teamTab = d.ttab; render(); return; }
+  if (d.roster) { teamSel = d.roster; teamTab = 'roster'; render(); return; }
+  if (d.thread) { thread = +d.thread; render(); return; }
+  if (d.bill) { billing = d.bill; render(); return; }
+  if (d.switch) { setPlan(d.switch, true); show(`Demo: switched to ${PLANS[d.switch].name}`); return; }
+  if (t.id === 'ev-new') { showEventForm = true; render(); return; }
+  if (t.id === 'ev-cancel') { showEventForm = false; render(); return; }
+  if (t.id === 'faq-new') { showFaqForm = true; render(); return; }
+  if (t.id === 'faq-cancel') { showFaqForm = false; render(); return; }
+  if (t.id === 'add-team') {
+    if (teams.length >= P().teams) return;
+    const names = ['Eastside Elite 13U', 'Summer Shooting Crew', 'Girls Skills Group', 'Varsity Prep', 'Bigs Footwork', 'Saturday Clinic Group', 'Middle School Guards', 'Fall League Team'];
+    const id = 't' + (teams.length + 1);
+    teams.push({ id, name: names[(teams.length - 2) % names.length], sport: 'Basketball', desc: 'New team' }); rosterCount[id] = 0; roster[id] = [];
+    render(); show('Demo: team added. Invite up to 55 players.'); return;
   }
-
-  document.querySelectorAll('.viewas button').forEach(b => b.addEventListener('click', () => {
-    plan = b.dataset.plan;
-    try { localStorage.setItem('s365-plan', plan); } catch (e) {}
-    render();
-    show(`Now viewing as a ${PLANS[plan].name} coach`);
-  }));
-
-  document.getElementById('add-team').addEventListener('click', () => {
-    if (teams.length >= PLANS[plan].teams) return;
-    const name = extraNames[(teams.length - 2) % extraNames.length];
-    teams.push({ name, players: 0 });
-    render();
-    show(`Demo: added "${name}". Invite up to ${ROSTER_MAX} players.`);
-  });
-
-  // ---- Setup checklist ----
-  const tasks = [...document.querySelectorAll('.task')];
-  function refreshSetup() {
-    const done = tasks.filter(t => t.classList.contains('done')).length;
-    document.getElementById('setup-title').textContent = done === 5 ? 'You\'re all set up!' : `Get set up: ${done} of 5 done`;
-    document.getElementById('setup-bar').style.width = (done / 5 * 100) + '%';
-    tasks.forEach(t => t.classList.remove('next'));
-    const next = tasks.find(t => !t.classList.contains('done'));
-    if (next) next.classList.add('next');
+});
+document.addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.target;
+  if (f.id === 'profile-form') show('Demo: profile updated');
+  if (f.id === 'ev-form') {
+    const v = id => document.getElementById(id).value.trim();
+    events.unshift({ name: v('ev-name'), date: v('ev-date'), time: v('ev-time'), place: v('ev-place'), price: v('ev-price'), spots: `0 / ${v('ev-spots') || '—'}`, pay: v('ev-pay'), ages: v('ev-ages') || 'All' });
+    showEventForm = false; render(); show('Demo: event created');
   }
-  tasks.forEach(t => t.addEventListener('click', () => {
-    t.classList.toggle('done');
-    t.querySelector('.dot').textContent = t.classList.contains('done') ? '✓' : '';
-    refreshSetup();
-  }));
-
-  // ---- Pending requests ----
-  let pending = 2;
-  document.querySelectorAll('[data-act]').forEach(b => b.addEventListener('click', () => {
-    const card = b.closest('.req');
-    const accepted = b.dataset.act === 'accept';
-    card.querySelector('.row').outerHTML = `<div class="status" style="color:${accepted ? '#86efac' : '#9ca0aa'}">${accepted ? '✓ Accepted. Added to Booked Sessions.' : 'Declined. The family was notified.'}</div>`;
-    pending -= 1;
-    document.getElementById('kpi-pending').textContent = pending;
-    const sc = document.getElementById('side-count');
-    sc.textContent = pending; sc.hidden = pending === 0;
-    show(accepted ? 'Session accepted (demo)' : 'Request declined (demo)');
-  }));
-
-  // ---- Send an update ----
-  const to = document.getElementById('u-to'), send = document.getElementById('u-send');
-  to.addEventListener('change', () => { send.textContent = `Send to ${to.value} families`; });
-  document.getElementById('update-form').addEventListener('submit', e => {
-    e.preventDefault();
-    const ways = ['push', 'email', 'text'].filter(w => document.getElementById('u-' + w).checked);
-    if (!ways.length) { show('Pick at least one way to send it'); return; }
-    show(`Demo: would send to ${to.value} families by ${ways.join(', ')}`);
-  });
-
-  // ---- Copy booking link ----
-  async function copyLink() {
-    const text = 'https://' + document.getElementById('book-url').textContent;
-    try { await navigator.clipboard.writeText(text); show('Booking link copied'); }
-    catch (e) { const r = document.createRange(); r.selectNodeContents(document.getElementById('book-url')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); show('Link selected. Press Ctrl+C to copy'); }
+  if (f.id === 'faq-form') { faqs.push([document.getElementById('faq-q').value.trim(), document.getElementById('faq-a').value.trim()]); showFaqForm = false; render(); show('Demo: FAQ added to your page'); }
+  if (f.id === 'msg-form') {
+    const txt = document.getElementById('msg-text').value.trim();
+    if (!txt) { show('Write a message first'); return; }
+    THREADS[thread].msgs.push(['me', esc(txt), 'Just now']); THREADS[thread].last = txt; render(); show('Demo: message sent');
   }
-  document.getElementById('copy-btn').addEventListener('click', copyLink);
-  document.getElementById('share-top').addEventListener('click', copyLink);
+});
+document.addEventListener('input', e => { if (e.target.id === 'ev-q') { eventQuery = e.target.value; const pos = e.target.selectionStart; render(); const q = document.getElementById('ev-q'); q.focus(); q.setSelectionRange(pos, pos); } });
+document.addEventListener('change', e => { if (e.target.id === 'team-sel') { teamSel = e.target.value; render(); } });
 
-  render();
+const h0 = location.hash.slice(1);
+if (VIEWS.includes(h0)) view = h0;
+render();
 </script>
 </body>
 </html>
